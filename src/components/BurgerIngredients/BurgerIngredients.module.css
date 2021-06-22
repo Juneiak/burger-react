@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 600px;
 }
 
 .menu {
@@ -49,32 +50,3 @@
 
 }
 
-.ingredient {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  min-height: 208px;
-}
-
-.count {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.ingredientImage {
-
-}
-
-.cost {
-  display: flex;
-  align-items: center;
-}
-
-.name {
-  max-height: 48px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
