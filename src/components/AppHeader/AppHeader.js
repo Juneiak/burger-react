@@ -27,7 +27,7 @@ class AppHeader extends React.Component {
         
         <div className={headerStyles.profile}>
           <a className={`${headerStyles.link} p-5`} href="#" target="_self">
-            <ListIcon type={"secondary"} />
+            <ProfileIcon type={"secondary"} />
             <p className="text text_type_main-default text_color_inactive ml-2">Личный кабинет</p>
           </a>
         </div>

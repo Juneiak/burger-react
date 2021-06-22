@@ -3,3 +3,9 @@
   margin: auto;
   max-width: 62%;
 }
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+}
