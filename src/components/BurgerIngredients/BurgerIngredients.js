@@ -2,6 +2,7 @@ import React from "react";
 import burgerIngredientsSyles from "./BurgerIngredients.module.css";
 import Menu from "./Menu";
 import Ingredient from "./Ingredient";
+import propTypes from 'prop-types';
 
 class BurgerIngredients extends React.Component {
 
@@ -58,5 +59,21 @@ class BurgerIngredients extends React.Component {
     )
   }
 };
+
+BurgerIngredients.propTypes = {
+  data: propTypes.arrayOf(propTypes.shape({
+    _id: propTypes.string,
+    type: propTypes.string,
+    proteins: propTypes.number,
+    fat: propTypes.number,
+    carbohydrates: propTypes.number,
+    calories: propTypes.number,
+    price: propTypes.number,
+    image: propTypes.string,
+    image_mobile: propTypes.string,
+    image_large: propTypes.string,
+    __v: propTypes.number
+  }))
+}
 
 export default BurgerIngredients;
