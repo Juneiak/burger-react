@@ -1,16 +1,17 @@
 import React from "react";
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import {DragIcon, ConstructorElement, Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import propTypes from 'prop-types';
 
 class BurgerConstructor extends React.Component {
 
   render() {
     return(
       <section className={`${BurgerConstructorStyles.burgerConstructor} pt-25`}>
-        <div className={`${BurgerConstructorStyles.selectedElements} mr-4 ml-4 mb-10`}>
+        <div className={`${BurgerConstructorStyles.selectedElements}  ml-4 mb-10`}>
 
           <ul className={`${BurgerConstructorStyles.lockedElements}`}>
-            <li className={`${BurgerConstructorStyles.element}`}>
+            <li>
               <ConstructorElement
                 type="top"
                 isLocked={true}
@@ -22,74 +23,22 @@ class BurgerConstructor extends React.Component {
           </ul>
 
           <ul  className={`${BurgerConstructorStyles.elements}`}>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
-            <li className={`${BurgerConstructorStyles.element}`}>
-              <div className='mr-2'><DragIcon type="primary" /></div>
-              <ConstructorElement
-                text="Краторная булка N-200i (верх)"
-                price={200}
-                thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
-              />
-            </li>
+            {this.props.data.slice(4,10).map(item => (
+              item.type !== 'bun' && (
+                <li key={item._id} className={`${BurgerConstructorStyles.element}`}>
+                  <DragIcon type="primary" />
+                  <ConstructorElement
+                    text={item.name}
+                    price={item.price}
+                    thumbnail={item.image}
+                  />
+                </li>
+              )
+            ))}
           </ul>
 
           <ul className={`${BurgerConstructorStyles.lockedElements}`}>
-            <li className={`${BurgerConstructorStyles.element}`}>
+            <li>
               <ConstructorElement
                 type="bottom"
                 isLocked={true}
@@ -112,6 +61,22 @@ class BurgerConstructor extends React.Component {
       </section>
     )
   }
+}
+
+BurgerConstructor.propTypes = {
+  data: propTypes.arrayOf(propTypes.shape({
+    _id: propTypes.string.isRequired,
+    type: propTypes.string.isRequired,
+    proteins: propTypes.number,
+    fat: propTypes.number,
+    carbohydrates: propTypes.number,
+    calories: propTypes.number,
+    price: propTypes.number.isRequired,
+    image: propTypes.string.isRequired,
+    image_mobile: propTypes.string,
+    image_large: propTypes.string,
+    __v: propTypes.number
+  }))
 }
 
 export default BurgerConstructor;

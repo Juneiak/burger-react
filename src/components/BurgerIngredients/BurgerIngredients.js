@@ -13,7 +13,7 @@ class BurgerIngredients extends React.Component {
         <Menu />
         <ul className={`${burgerIngredientsSyles.menu} mt-10`}>
 
-          <li className={burgerIngredientsSyles.menuItem}>
+          <li className={`${burgerIngredientsSyles.menuItem}`}>
             <h2 className={`${burgerIngredientsSyles.typeName} text text_type_main-medium mb-6`}>Булки</h2>
             <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
               {this.props.data.map(item => (
@@ -62,14 +62,14 @@ class BurgerIngredients extends React.Component {
 
 BurgerIngredients.propTypes = {
   data: propTypes.arrayOf(propTypes.shape({
-    _id: propTypes.string,
-    type: propTypes.string,
+    _id: propTypes.string.isRequired,
+    type: propTypes.string.isRequired,
     proteins: propTypes.number,
     fat: propTypes.number,
     carbohydrates: propTypes.number,
     calories: propTypes.number,
-    price: propTypes.number,
-    image: propTypes.string,
+    price: propTypes.number.isRequired,
+    image: propTypes.string.isRequired,
     image_mobile: propTypes.string,
     image_large: propTypes.string,
     __v: propTypes.number
