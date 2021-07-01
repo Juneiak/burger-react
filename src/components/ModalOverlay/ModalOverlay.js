@@ -6,8 +6,14 @@ const modalRoot = document.querySelector('#react-modals');
 
 function ModalOverlay(props) {
 
+  function handleOverlayClose(evt) {
+    if (evt.target === evt.currentTarget) {
+      props.onClose()
+    }
+  }
+
   return ReactDOM.createPortal((
-    <div onClick={props.onClose} className={ModalOverlayStyles.modalOverlay}>
+    <div onClick={handleOverlayClose} className={ModalOverlayStyles.modalOverlay}>
       {props.children}
     </div>
   ), modalRoot) 

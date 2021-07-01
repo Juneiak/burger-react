@@ -1,4 +1,4 @@
-import React from "react";
+
 import burgerIngredientsSyles from "./BurgerIngredients.module.css";
 import Menu from "./Menu";
 import Ingredient from "./Ingredient";
@@ -18,7 +18,7 @@ function BurgerIngredients(props) {
             {props.data.map(item => (
               item.type === 'bun' && (
                 <li key={item._id} className={burgerIngredientsSyles.ingredientsMenuItem}>
-                <Ingredient  price={item.price} image={item.image} name={item.name}/>
+                <Ingredient onClick={props.onIngredientClick} data={item} />
               </li>
               )
             ))}
@@ -31,7 +31,7 @@ function BurgerIngredients(props) {
             {props.data.map(item => (
               item.type === 'sauce' && (
                 <li key={item._id} className={burgerIngredientsSyles.ingredientsMenuItem}>
-                <Ingredient  price={item.price} image={item.image} name={item.name}/>
+                <Ingredient onClick={props.onIngredientClick} data={item}/>
               </li>
               )
             ))}
@@ -44,7 +44,7 @@ function BurgerIngredients(props) {
             {props.data.map(item => (
               item.type === 'main' && (
                 <li key={item._id} className={burgerIngredientsSyles.ingredientsMenuItem}>
-                <Ingredient  price={item.price} image={item.image} name={item.name}/>
+                <Ingredient  onClick={props.onIngredientClick} data={item}/>
               </li>
               )
             ))}
@@ -72,7 +72,8 @@ BurgerIngredients.propTypes = {
     image_mobile: propTypes.string,
     image_large: propTypes.string,
     __v: propTypes.number
-  }))
+  })),
+  onIngredientClick: propTypes.func.isRequired
 }
 
 export default BurgerIngredients;

@@ -1,4 +1,4 @@
-import React from "react";
+
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import {DragIcon, ConstructorElement, Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import propTypes from 'prop-types';
@@ -22,7 +22,7 @@ function BurgerConstructor(props) {
         </ul>
 
         <ul  className={`${BurgerConstructorStyles.elements}`}>
-          {props.data.slice(4,10).map(item => (
+          {props.data.slice(0,6).map(item => (
             item.type !== 'bun' && (
               <li key={item._id} className={`${BurgerConstructorStyles.element}`}>
                 <DragIcon type="primary" />
@@ -53,7 +53,7 @@ function BurgerConstructor(props) {
           <p className="text text_type_digits-medium mr-2">610</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button type="primary" size="large">
+        <Button onClick={props.onOrderClick} type="primary" size="large">
           Оформить заказ
         </Button>
       </div>
@@ -74,7 +74,8 @@ BurgerConstructor.propTypes = {
     image_mobile: propTypes.string,
     image_large: propTypes.string,
     __v: propTypes.number
-  }))
+  })),
+  onOrderClick: propTypes.func.isRequired
 }
 
 export default BurgerConstructor;

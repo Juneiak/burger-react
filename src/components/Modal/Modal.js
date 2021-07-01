@@ -24,7 +24,7 @@ function Modal(props) {
   return (
     <ModalOverlay onClose={props.onClose}>
       <section className={`${ModalStyles.modal} pt-10 pr-10 pl-10 pb-15`}>
-        <button className={ModalStyles.closeButton}><CloseIcon type="primary" /></button>
+        <button onClick={props.onClose} className={ModalStyles.closeButton}><CloseIcon type="primary" /></button>
         
         {props.children}
       </section>
