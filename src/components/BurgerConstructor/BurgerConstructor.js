@@ -74,7 +74,7 @@ BurgerConstructor.propTypes = {
     image_mobile: propTypes.string,
     image_large: propTypes.string,
     __v: propTypes.number
-  })),
+  }).isRequired),
   onOrderClick: propTypes.func.isRequired
 }
 

@@ -72,7 +72,7 @@ BurgerIngredients.propTypes = {
     image_mobile: propTypes.string,
     image_large: propTypes.string,
     __v: propTypes.number
-  })),
+  }).isRequired),
   onIngredientClick: propTypes.func.isRequired
 }
 

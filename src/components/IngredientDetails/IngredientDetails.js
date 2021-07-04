@@ -1,11 +1,9 @@
 import propTypes from 'prop-types';
-import Modal from "../Modal/Modal";
 
 import ingredientDetailsStyles from './IngredientDetails.module.css';
 
-function IngredientDetails({onClose, ingredient}) {
+function IngredientDetails({ingredient}) {
   return (
-    <Modal onClose={onClose} isOpen={ingredient ? true : false}>
       <div className={ingredientDetailsStyles.content}>
         <h2 className={`${ingredientDetailsStyles.title} text text_type_main-large`}>Детали ингредиента</h2>
         <img src={ingredient.image} alt={ingredient.name} className={`${ingredientDetailsStyles.image} text text_type_main-large mb-4`} />
@@ -29,12 +27,10 @@ function IngredientDetails({onClose, ingredient}) {
           </li>
         </ul>
       </div>
-    </Modal>
     )
 }
 
 IngredientDetails.propTypes = {
-  onClose: propTypes.func.isRequired,
   ingredient: propTypes.shape({
     _id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
@@ -47,7 +43,7 @@ IngredientDetails.propTypes = {
     image_mobile: propTypes.string,
     image_large: propTypes.string,
     __v: propTypes.number
-  })
+  }).isRequired
 }
 
 export default IngredientDetails;
