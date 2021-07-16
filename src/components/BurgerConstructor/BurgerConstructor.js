@@ -24,17 +24,15 @@ function BurgerConstructor(props) {
     <section className={`${BurgerConstructorStyles.burgerConstructor} pt-25`}>
       <div className={`${BurgerConstructorStyles.selectedElements}  ml-4 mb-10`}>
 
-        <ul className={`${BurgerConstructorStyles.lockedElements}`}>
-          <li>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={selectedBun && selectedBun.name}
-              price={selectedBun && selectedBun.price}
-              thumbnail={selectedBun && selectedBun.image}
-            />
-          </li>
-        </ul>
+        <div className={`${BurgerConstructorStyles.lockedElements}`}>
+          <ConstructorElement
+            type="top"
+            isLocked={true}
+            text={selectedBun && selectedBun.name}
+            price={selectedBun && selectedBun.price}
+            thumbnail={selectedBun && selectedBun.image}
+          />
+        </div>
 
         <ul  className={`${BurgerConstructorStyles.elements}`}>
           {data.slice(0,6).map(item => (
@@ -51,17 +49,16 @@ function BurgerConstructor(props) {
           ))}
         </ul>
 
-        <ul className={`${BurgerConstructorStyles.lockedElements}`}>
-          <li>
-            <ConstructorElement
-              type="bottom"
-              isLocked={true}
-              text={selectedBun && selectedBun.name}
-              price={selectedBun && selectedBun.price}
-              thumbnail={selectedBun && selectedBun.image}
-            />
-          </li>
-        </ul>
+        <div className={`${BurgerConstructorStyles.lockedElements}`}>
+          <ConstructorElement
+            type="top"
+            isLocked={true}
+            text={selectedBun && selectedBun.name}
+            price={selectedBun && selectedBun.price}
+            thumbnail={selectedBun && selectedBun.image}
+          />
+        </div>
+
       </div>
       <div className={`${BurgerConstructorStyles.confirmButton} mr-4`}>
         <div className={`${BurgerConstructorStyles.total} mr-10 `}>

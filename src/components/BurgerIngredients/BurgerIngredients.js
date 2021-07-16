@@ -6,6 +6,8 @@ import propTypes from 'prop-types';
 
 function BurgerIngredients(props) {
 
+
+
   return (
     <section className={`${burgerIngredientsSyles.burgerIngredients} pt-10`}>
       <h1 className='text text_type_main-large mb-5'>Соберите бургер</h1>
@@ -17,9 +19,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {props.data.map(item => (
               item.type === 'bun' && (
-                <li key={item._id} className={burgerIngredientsSyles.ingredientsMenuItem}>
-                <Ingredient onClick={props.onIngredientClick} data={item} />
-              </li>
+                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} data={item} />
               )
             ))}
           </ul>
@@ -30,9 +30,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {props.data.map(item => (
               item.type === 'sauce' && (
-                <li key={item._id} className={burgerIngredientsSyles.ingredientsMenuItem}>
-                <Ingredient onClick={props.onIngredientClick} data={item}/>
-              </li>
+                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} data={item} />
               )
             ))}
           </ul>
@@ -43,9 +41,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {props.data.map(item => (
               item.type === 'main' && (
-                <li key={item._id} className={burgerIngredientsSyles.ingredientsMenuItem}>
-                <Ingredient  onClick={props.onIngredientClick} data={item}/>
-              </li>
+                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} data={item} />
               )
             ))}
           </ul>

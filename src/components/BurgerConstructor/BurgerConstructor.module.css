@@ -12,8 +12,6 @@
 }
 
 .lockedElements {
-  list-style: none;
-  padding: 0;
   margin: 0 16px 0 0;
   display: flex;
   justify-content: flex-end;
