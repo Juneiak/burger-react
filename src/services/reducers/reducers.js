@@ -4,14 +4,16 @@ import {
   REMOVE_SELECTED_INGREDIENT,
   SET_ORDER_DETAILS,
   ADD_INGREDIENT_INTO_CONSTRUCTOR,
-  REMOVE_INGREDIENT_FROM_CONSTRUCTOR
+  REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
+  CLEAR_ORDER_DETAILS
 } from '../actions/index.js';
 
 const inititialIngredientsState = {
   ingredientsList: [],
   selectedIngredient: {},
   constructorList: [],
-  orderDetails: {}
+  orderDetails: {},
+  selectedBun: {}
 }
 
 export const indexReducer = (state=inititialIngredientsState, action) => {
@@ -24,6 +26,12 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
     }
 
     case ADD_INGREDIENT_INTO_CONSTRUCTOR : {
+      if (action.ingredientType === 'bun') {
+        return {
+          ...state,
+          selectedBun: state.ingredientsList.find(ingredient => ingredient._id === action.id)
+        }
+      }
       return {
         ...state,
         constructorList: [...state.constructorList, state.ingredientsList.find(ingredient => ingredient._id === action.id)]  
@@ -33,15 +41,22 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
     case REMOVE_INGREDIENT_FROM_CONSTRUCTOR : {
       return {
         ...state,
-        constructorList: state.constructorList.filter(ingredient => ingredient._id !== action.id)
+        constructorList: state.constructorList.filter((ingredient, ingredientIndex) => ingredientIndex !== action.index)
       }
     }
 
     case SET_ORDER_DETAILS: {
-      console.log(action.orderDetails);
       return {
         ...state,
         orderDetails: action.orderDetails
+      }
+    }
+
+    case CLEAR_ORDER_DETAILS: {
+      console.log(action.orderDetails);
+      return {
+        ...state,
+        orderDetails: {}
       }
     }
 

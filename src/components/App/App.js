@@ -6,8 +6,7 @@ import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
-import { DataContext } from '../../contexts/dataContext';
-import {getIngredientsList, REMOVE_SELECTED_INGREDIENT, TOGGLE_ORDER_DETAILS_POPUP} from '../../services/actions/index.js'
+import {getIngredientsList, REMOVE_SELECTED_INGREDIENT, CLEAR_ORDER_DETAILS} from '../../services/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
@@ -21,12 +20,13 @@ function App() {
 
   React.useEffect(() => {
     dispatch(getIngredientsList())
-  }, [dispatch])
+  }, [])
 
 
   function handleCloseModal() {
     dispatch({type: REMOVE_SELECTED_INGREDIENT})
-    dispatch({type: TOGGLE_ORDER_DETAILS_POPUP}) // fix it
+    dispatch({type: CLEAR_ORDER_DETAILS})
+    
   }
     
 
@@ -38,7 +38,7 @@ function App() {
         <BurgerConstructor />
       </main>
 
-      {orderDetails.success && <Modal isOpen={orderDetails.order ? true : false} onClose={handleCloseModal}><OrderDetails /></Modal>}
+      {orderDetails.success && <Modal isOpen={orderDetails.success ? true : false} onClose={handleCloseModal}><OrderDetails /></Modal>}
       {selectedIngredient._id && <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseModal}><IngredientDetails /></Modal>}
     </div>
   );

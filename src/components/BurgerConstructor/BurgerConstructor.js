@@ -1,16 +1,35 @@
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import Burger from './Burger';
-import { getOrderDetails, TOGGLE_ORDER_DETAILS_POPUP } from '../../services/actions/index.js';
-import {useDispatch} from 'react-redux';
+import { getOrderDetails } from '../../services/actions/index.js';
+import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
 
 function BurgerConstructor() {
 
+  const [total, setTotal] = React.useState(0)
+
   const dispatch = useDispatch()
+  const {constructorList, selectedBun} = useSelector(store => ({
+    constructorList: store.index.constructorList,
+    selectedBun: store.index.selectedBun
+  }))
+
+  React.useEffect(() => {
+    const bunPrice = selectedBun.price ? selectedBun.price * 2 : 0
+    setTotal(constructorList.reduce((prevValue, item) => prevValue + item.price, bunPrice))
+  }, [constructorList, selectedBun])
 
   function handleOrderClick() {
-    const order = ["60d3b41abdacab0026a733c6","60d3b41abdacab0026a733c6","60d3b41abdacab0026a733cc","60d3b41abdacab0026a733ce","60d3b41abdacab0026a733cf","60d3b41abdacab0026a733c8","60d3b41abdacab0026a733c9"]
-    dispatch(getOrderDetails(order))
+    if (constructorList.length !== 0 && selectedBun._id) {
+
+      const order = constructorList.map(ingredient => ingredient._id)
+      order.push(selectedBun._id)
+
+      dispatch(getOrderDetails(order))
+    } else {
+      console.error('Не выбраны ингредиенты!');
+    }
   }
 
   return(
@@ -20,7 +39,7 @@ function BurgerConstructor() {
  
       <div className={`${BurgerConstructorStyles.confirmButton} mr-4`}>
         <div className={`${BurgerConstructorStyles.total} mr-10 `}>
-          <p className="text text_type_digits-medium mr-2">610</p>
+          <p className="text text_type_digits-medium mr-2">{total}</p>
           <CurrencyIcon type="primary" />
         </div>
         <Button onClick={handleOrderClick} type="primary" size="large">

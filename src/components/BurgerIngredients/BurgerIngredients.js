@@ -20,7 +20,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map(item => (
               item.type === 'bun' && (
-                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} data={item} />
+                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} ingredientData={item} />
               )
             ))}
           </ul>
@@ -31,7 +31,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map(item => (
               item.type === 'sauce' && (
-                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} data={item} />
+                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} ingredientData={item} />
               )
             ))}
           </ul>
@@ -42,7 +42,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map(item => (
               item.type === 'main' && (
-                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} data={item} />
+                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} ingredientData={item} />
               )
             ))}
           </ul>
@@ -53,11 +53,7 @@ function BurgerIngredients(props) {
     </section>
     
   )
-  
 };
 
-BurgerIngredients.propTypes = {
-  onIngredientClick: propTypes.func.isRequired
-}
 
 export default BurgerIngredients;
