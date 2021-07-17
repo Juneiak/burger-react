@@ -7,76 +7,39 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
 import { DataContext } from '../../contexts/dataContext';
-const apiUrl = 'https://norma.nomoreparties.space/api/ingredients ';
+import {getIngredientsList, REMOVE_SELECTED_INGREDIENT, TOGGLE_ORDER_DETAILS_POPUP} from '../../services/actions/index.js'
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+
+  const dispatch = useDispatch()
   
-  const [data, setData] = React.useState([])
-  const [selectedIngredient, setSelectedIngredient] = React.useState(null);
-  const [modalOrderDetailsIsOpen, toggleModalOrderDetails]  = React.useState(false);
-  const [orderData, setOrerData] = React.useState({})
+  const {selectedIngredient, orderDetails} = useSelector(store => ({
+    selectedIngredient: store.index.selectedIngredient,
+    orderDetails: store.index.orderDetails
+  }))
+
   React.useEffect(() => {
-    function getData() {
-      fetch(apiUrl)
-        .then(res => {
-          if (res.ok) {
-            return res.json()
-          }
-          return Promise.reject(`error: ${res.status}`)
-        } )
-        .then(dataObj => setData(dataObj.data))
-        .catch(err => console.error(err))
-    }
-    getData()
-  }, [])
+    dispatch(getIngredientsList())
+  }, [dispatch])
+
 
   function handleCloseModal() {
-    setSelectedIngredient(null)
-    toggleModalOrderDetails(false)
+    dispatch({type: REMOVE_SELECTED_INGREDIENT})
+    dispatch({type: TOGGLE_ORDER_DETAILS_POPUP}) // fix it
   }
-
-  function handleIngredientClick(ingredient) {
-    setSelectedIngredient(ingredient)
-  }
-
-  function handleOrderClick(order) {
-    fetch("https://norma.nomoreparties.space/api/orders", {
-      method: "POST", 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "ingredients": order
-      })
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`error: ${res.status}`)
-      })
-      .then(data => {
-        setOrerData(data)
-        toggleModalOrderDetails(true)
-      })
-      .catch(err => {
-        console.error(err);
-      })
     
-  }
 
   return (
     <div className={AppStyles.app}>
       <AppHeader />
       <main className={AppStyles.main}>
-        <BurgerIngredients onIngredientClick={handleIngredientClick} data={data}/>
-        <DataContext.Provider value={data}>
-          <BurgerConstructor onOrderClick={handleOrderClick} />
-        </DataContext.Provider>
-        
+        <BurgerIngredients/>
+        <BurgerConstructor />
       </main>
-      {modalOrderDetailsIsOpen &&  <Modal isOpen={modalOrderDetailsIsOpen} onClose={handleCloseModal}><OrderDetails orderData={orderData} /></Modal>}
-      {selectedIngredient && <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseModal}><IngredientDetails ingredient={selectedIngredient} /></Modal>}
+
+      {orderDetails.success && <Modal isOpen={orderDetails.order ? true : false} onClose={handleCloseModal}><OrderDetails /></Modal>}
+      {selectedIngredient._id && <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseModal}><IngredientDetails /></Modal>}
     </div>
   );
 }

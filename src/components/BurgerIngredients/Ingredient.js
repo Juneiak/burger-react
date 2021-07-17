@@ -1,11 +1,15 @@
 import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientStyles from './Ingredient.module.css';
 import {useDrag} from 'react-dnd';
+import {SELECT_INGREDIENT} from '../../services/actions/index.js';
+import {useDispatch} from 'react-redux';
 
-function Ingredient({data, onClick, id}) {
+function Ingredient({data, id}) {
+  
+  const dispatch = useDispatch()
 
   const [{opacity}, dragRef] = useDrag({
-    type: data.type === 'bun' ? 'bun' : 'filling',
+    type: 'ingredient',
     item: {id},
     collect: monitor => ({
       opacity: monitor.isDragging() ? 0.5 : 1
@@ -13,7 +17,7 @@ function Ingredient({data, onClick, id}) {
   })
 
   function onIngredientClick() {
-    onClick(data)
+    dispatch({type: SELECT_INGREDIENT, id})
   }
 
   return (

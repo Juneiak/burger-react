@@ -1,0 +1,44 @@
+.bun {
+  margin: 0 16px 0 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.selectedIngredients {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ingredients {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 464px;
+  overflow: auto;
+  min-height: 100px;
+  width: 100%;
+}
+
+.ingredients::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.ingredients::-webkit-scrollbar-thumb {
+  width: 8px;
+  height: 80%;
+  background-color: #8585AD;
+}
+
+.ingredient {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  gap: 8px;
+  min-width: 536px;
+  margin-right: 8px;
+}

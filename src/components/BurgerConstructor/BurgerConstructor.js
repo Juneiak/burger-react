@@ -1,65 +1,23 @@
-import React from 'react';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
-import {DragIcon, ConstructorElement, Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import propTypes from 'prop-types';
-import { DataContext } from '../../contexts/dataContext';
+import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import Burger from './Burger';
+import { getOrderDetails, TOGGLE_ORDER_DETAILS_POPUP } from '../../services/actions/index.js';
+import {useDispatch} from 'react-redux';
 
-function BurgerConstructor(props) {
-  const data = React.useContext(DataContext)
-  const [selectedBun, setSelectedBun] = React.useState({})
+function BurgerConstructor() {
 
-  React.useEffect(() => {
-    const bun = data.find((ingredient) => {
-      return ingredient.type === 'bun'
-    })
-    setSelectedBun(bun)
-  }, [data])
+  const dispatch = useDispatch()
 
   function handleOrderClick() {
     const order = ["60d3b41abdacab0026a733c6","60d3b41abdacab0026a733c6","60d3b41abdacab0026a733cc","60d3b41abdacab0026a733ce","60d3b41abdacab0026a733cf","60d3b41abdacab0026a733c8","60d3b41abdacab0026a733c9"]
-    props.onOrderClick(order)
+    dispatch(getOrderDetails(order))
   }
 
   return(
     <section className={`${BurgerConstructorStyles.burgerConstructor} pt-25`}>
-      <div className={`${BurgerConstructorStyles.selectedElements}  ml-4 mb-10`}>
-
-        <div className={`${BurgerConstructorStyles.lockedElements}`}>
-          <ConstructorElement
-            type="top"
-            isLocked={true}
-            text={selectedBun && selectedBun.name}
-            price={selectedBun && selectedBun.price}
-            thumbnail={selectedBun && selectedBun.image}
-          />
-        </div>
-
-        <ul  className={`${BurgerConstructorStyles.elements}`}>
-          {data.slice(0,6).map(item => (
-            item.type !== 'bun' && (
-              <li key={item._id} className={`${BurgerConstructorStyles.element}`}>
-                <DragIcon type="primary" />
-                <ConstructorElement
-                  text={item.name}
-                  price={item.price}
-                  thumbnail={item.image}
-                />
-              </li>
-            )
-          ))}
-        </ul>
-
-        <div className={`${BurgerConstructorStyles.lockedElements}`}>
-          <ConstructorElement
-            type="top"
-            isLocked={true}
-            text={selectedBun && selectedBun.name}
-            price={selectedBun && selectedBun.price}
-            thumbnail={selectedBun && selectedBun.image}
-          />
-        </div>
-
-      </div>
+      
+      <Burger />
+ 
       <div className={`${BurgerConstructorStyles.confirmButton} mr-4`}>
         <div className={`${BurgerConstructorStyles.total} mr-10 `}>
           <p className="text text_type_digits-medium mr-2">610</p>
@@ -71,10 +29,6 @@ function BurgerConstructor(props) {
       </div>
     </section>
   )
-}
-
-BurgerConstructor.propTypes = {
-  onOrderClick: propTypes.func.isRequired
 }
 
 export default BurgerConstructor;

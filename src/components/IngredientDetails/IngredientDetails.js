@@ -1,8 +1,11 @@
 import propTypes from 'prop-types';
-
+import { useSelector } from 'react-redux';
 import ingredientDetailsStyles from './IngredientDetails.module.css';
 
-function IngredientDetails({ingredient}) {
+function IngredientDetails() {
+
+  const ingredient = useSelector(store => store.index.selectedIngredient)
+
   return (
       <div className={ingredientDetailsStyles.content}>
         <h2 className={`${ingredientDetailsStyles.title} text text_type_main-large`}>Детали ингредиента</h2>
@@ -28,22 +31,6 @@ function IngredientDetails({ingredient}) {
         </ul>
       </div>
     )
-}
-
-IngredientDetails.propTypes = {
-  ingredient: propTypes.shape({
-    _id: propTypes.string.isRequired,
-    type: propTypes.string.isRequired,
-    proteins: propTypes.number.isRequired,
-    fat: propTypes.number.isRequired,
-    carbohydrates: propTypes.number.isRequired,
-    calories: propTypes.number.isRequired,
-    price: propTypes.number.isRequired,
-    image: propTypes.string.isRequired,
-    image_mobile: propTypes.string,
-    image_large: propTypes.string,
-    __v: propTypes.number
-  }).isRequired
 }
 
 export default IngredientDetails;

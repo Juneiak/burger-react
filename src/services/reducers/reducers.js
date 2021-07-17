@@ -11,7 +11,7 @@ const inititialIngredientsState = {
   ingredientsList: [],
   selectedIngredient: {},
   constructorList: [],
-  orederDetails: {}
+  orderDetails: {}
 }
 
 export const indexReducer = (state=inititialIngredientsState, action) => {
@@ -26,28 +26,29 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
     case ADD_INGREDIENT_INTO_CONSTRUCTOR : {
       return {
         ...state,
-        constructorList: [...state.constructorList, state.ingredientsList.filter(ingredient => ingredient.id === action.id)]
+        constructorList: [...state.constructorList, state.ingredientsList.find(ingredient => ingredient._id === action.id)]  
       }
     }
 
     case REMOVE_INGREDIENT_FROM_CONSTRUCTOR : {
       return {
         ...state,
-        constructorList: state.constructorList.filter(ingredient => ingredient.id !== action.id)
+        constructorList: state.constructorList.filter(ingredient => ingredient._id !== action.id)
       }
     }
 
     case SET_ORDER_DETAILS: {
+      console.log(action.orderDetails);
       return {
         ...state,
-        orederDetails: action.orederDetails
+        orderDetails: action.orderDetails
       }
     }
 
     case SELECT_INGREDIENT : {
       return {
         ...state,
-        selectedIngredient: state.ingredientsList.filter(ingredient => ingredient.id === action.id)
+        selectedIngredient: state.ingredientsList.find(ingredient => ingredient._id === action.id)
       }
     }
 
@@ -63,43 +64,6 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
     }
   }
 }
-
-// const inititialConstructorState = {
-//   constructorList: []
-// }
-
-// export const constructorReducer = (state=inititialConstructorState, action) => {
-//   switch (action.type) {
-//     case ADD_INGREDIENT_INTO_CONSTRUCTOR : {
-//       return {
-//         ...state,
-//         constructorList: [...state.constructorList, action.ingredient]
-//       }
-//     }
-//     case REMOVE_INGREDIENT_FROM_CONSTRUCTOR : {
-
-//     }
-//     default: {
-//       return state
-//     }
-//   }
-// }
-
-// const inititialOrderState = {
-//   oreder: {}
-// }
-
-// export const orderReducer = (state=inititialOrderState, action) => {
-//   switch (action.type) {
-//     case : {
-
-//     }
-//     default: {
-//       return state
-//     }
-//   }
-// }
-
 
 
 
