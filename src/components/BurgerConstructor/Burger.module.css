@@ -56,12 +56,3 @@
   height: 80%;
   background-color: #8585AD;
 }
-
-.ingredient {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  align-items: center;
-  gap: 8px;
-  min-width: 536px;
-  margin-right: 8px;
-}

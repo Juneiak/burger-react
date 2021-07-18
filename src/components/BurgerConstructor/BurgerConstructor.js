@@ -20,9 +20,9 @@ function BurgerConstructor() {
     setTotal(constructorList.reduce((prevValue, item) => prevValue + item.price, bunPrice))
   }, [constructorList, selectedBun])
 
+
   function handleOrderClick() {
     if (constructorList.length !== 0 && selectedBun._id) {
-
       const order = constructorList.map(ingredient => ingredient._id)
       order.push(selectedBun._id)
 

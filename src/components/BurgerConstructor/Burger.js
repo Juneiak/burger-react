@@ -3,8 +3,8 @@ import BurgerStyles from './Burger.module.css'
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDrop} from 'react-dnd';
 import {useDispatch, useSelector} from 'react-redux'
-import {ADD_INGREDIENT_INTO_CONSTRUCTOR, REMOVE_INGREDIENT_FROM_CONSTRUCTOR} from '../../services/actions/index.js';
-
+import {ADD_INGREDIENT_INTO_CONSTRUCTOR} from '../../services/actions/index.js';
+import Filling from './Filling';
 function Burger() {
 
   const dispatch = useDispatch()
@@ -13,7 +13,7 @@ function Burger() {
     selectedBun: store.index.selectedBun
   }))
   
-  const [{isHover}, dropRef] = useDrop({
+  const [{isIngredientHover}, ingredientDropRef] = useDrop({
     accept: 'ingredient',
     drop(item) {
       dispatch({
@@ -22,16 +22,11 @@ function Burger() {
         ingredientType: item.ingredientType})
     },
     collect: monitor => ({
-      isHover: monitor.isOver()
+      isIngredientHover: monitor.isOver()
     })
   })
 
-  function handleRemoveClick(index) {
-    console.log(index);
-    dispatch({type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR, index})
-  }
-
-  const border = isHover ? '1px #8585AD solid' : 'none';
+  const border = isIngredientHover ? '1px #8585AD solid' : 'none';
 
   const fillingChoiсe = (
     <div className={BurgerStyles.fillingChoiсe}>
@@ -46,7 +41,7 @@ function Burger() {
 
   return (
     
-    <div ref={dropRef} style={{border}} className={`${BurgerStyles.burger}  ml-4 mb-10`}>
+    <div ref={ingredientDropRef} style={{border}} className={`${BurgerStyles.burger}  ml-4 mb-10`}>
       
       {selectedBun._id ? (
         <div className={`${BurgerStyles.bun}`}>
@@ -63,17 +58,7 @@ function Burger() {
       {constructorList.length !== 0 ? (
           <ul className={BurgerStyles.ingredients}>
             {constructorList.map((item, index) => (
-              item.type !== 'bun' && (
-                <li key={index} className={BurgerStyles.ingredient}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={item.name}
-                    price={item.price}
-                    thumbnail={item.image}
-                    handleClose={() => handleRemoveClick(index)}
-                  />
-                </li>
-              )
+              item.type !== 'bun' && <Filling key={index} item={item} index={index}/>
             ))}
           </ul>
       ) : fillingChoiсe}
