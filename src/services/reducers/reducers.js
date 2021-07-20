@@ -47,17 +47,15 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
     }
     
     case UPDATE_SELECTED_INGREDIENT : {
-      //console.log(action.toInsertIndex, action.toRemoveIndex);
       const constructorList = state.constructorList
-      const to = action.toInsertIndex // 0
-      const from = action.toRemoveIndex // 3
+      const to = action.toInsertIndex 
+      const from = action.toRemoveIndex 
 
       const ingredientToMove = constructorList[from]
       const increment = to < from ? -1 : 1
       for (var index = from; index != to; index += increment) {
         constructorList[index] = constructorList[index + increment]
       }
-      console.log(to);
       constructorList[to] = ingredientToMove 
       return {
         ...state,
