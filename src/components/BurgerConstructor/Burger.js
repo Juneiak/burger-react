@@ -67,7 +67,7 @@ function Burger() {
       {selectedBun._id ? (
         <div className={`${BurgerStyles.bun}`}>
         <ConstructorElement
-          type="top"
+          type="bottom"
           isLocked={true}
           text={selectedBun.name}
           price={selectedBun.price}

@@ -15,7 +15,7 @@ function Ingredient({ingredientData, id}) {
   React.useEffect(() => {
     if (ingredientData.type === 'bun') {
       if (selectedBun._id === id) {
-        setCount(1)
+        setCount(2)
       } else {
         setCount(0)
       }

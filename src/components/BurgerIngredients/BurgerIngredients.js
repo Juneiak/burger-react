@@ -3,8 +3,8 @@ import burgerIngredientsSyles from "./BurgerIngredients.module.css";
 import Ingredient from "./Ingredient";
 import {useSelector} from "react-redux";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-
-function BurgerIngredients(props) {
+import propType from "prop-types"
+function BurgerIngredients({onIngredientClick}) {
 
   const data = useSelector(store => store.index.ingredientsList)
 
@@ -51,7 +51,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map(item => (
               item.type === 'bun' && (
-                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} ingredientData={item} />
+                <Ingredient key={item._id} id={item._id} onClick={onIngredientClick} ingredientData={item} />
               )
             ))}
           </ul>
@@ -62,7 +62,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map(item => (
               item.type === 'sauce' && (
-                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} ingredientData={item} />
+                <Ingredient key={item._id} id={item._id} onClick={onIngredientClick} ingredientData={item} />
               )
             ))}
           </ul>
@@ -73,7 +73,7 @@ function BurgerIngredients(props) {
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map(item => (
               item.type === 'main' && (
-                <Ingredient key={item._id} id={item._id} onClick={props.onIngredientClick} ingredientData={item} />
+                <Ingredient key={item._id} id={item._id} onClick={onIngredientClick} ingredientData={item} />
               )
             ))}
           </ul>
@@ -85,6 +85,10 @@ function BurgerIngredients(props) {
     
   )
 };
+
+BurgerIngredients.propType  = {
+  onIngredientClick: propType.func.isRequired
+}
 
 
 export default BurgerIngredients;

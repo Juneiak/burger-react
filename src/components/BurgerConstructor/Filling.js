@@ -3,6 +3,7 @@ import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger
 import {useDispatch} from 'react-redux';
 import {REMOVE_INGREDIENT_FROM_CONSTRUCTOR, UPDATE_SELECTED_INGREDIENT} from '../../services/actions/index.js';
 import {useDrag, useDrop} from "react-dnd";
+import propTypes from 'prop-types';
 
 function Filling({item, index}) {
 
@@ -54,6 +55,24 @@ function Filling({item, index}) {
       
   </li>    
   )
+}
+
+Filling.propTypes = {
+  item: propTypes.shape({
+    _id: propTypes.string,
+    name: propTypes.string.isRequired,
+    type: propTypes.string,
+    proteins: propTypes.number,
+    fat: propTypes.number,
+    carbohydrates: propTypes.number,
+    calories: propTypes.number,
+    price: propTypes.number.isRequired,
+    image: propTypes.string.isRequired,
+    image_mobile: propTypes.string,
+    image_large: propTypes.string,
+    __v: propTypes.number
+  }).isRequired,
+  index: propTypes.number.isRequired
 }
 
 export default Filling;

@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+
 import OrderDetailsStyles from './OrderDetails.module.css';
 import doneImage from '../../images/done.png';
 import {useSelector} from 'react-redux';

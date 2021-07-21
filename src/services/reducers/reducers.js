@@ -53,7 +53,7 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
 
       const ingredientToMove = constructorList[from]
       const increment = to < from ? -1 : 1
-      for (var index = from; index != to; index += increment) {
+      for (var index = from; index !== to; index += increment) {
         constructorList[index] = constructorList[index + increment]
       }
       constructorList[to] = ingredientToMove 
