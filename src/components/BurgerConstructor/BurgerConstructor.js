@@ -1,71 +1,45 @@
-import React from 'react';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
-import {DragIcon, ConstructorElement, Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import propTypes from 'prop-types';
-import { DataContext } from '../../contexts/dataContext';
+import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import Burger from './Burger';
+import { getOrderDetails } from '../../services/actions/index.js';
+import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
 
-function BurgerConstructor(props) {
-  const data = React.useContext(DataContext)
-  const [selectedBun, setSelectedBun] = React.useState({})
+function BurgerConstructor() {
+
+  const [total, setTotal] = React.useState(0)
+
+  const dispatch = useDispatch()
+  const {constructorList, selectedBun} = useSelector(store => ({
+    constructorList: store.index.constructorList,
+    selectedBun: store.index.selectedBun
+  }))
 
   React.useEffect(() => {
-    const bun = data.find((ingredient) => {
-      return ingredient.type === 'bun'
-    })
-    setSelectedBun(bun)
-  }, [data])
+    const bunPrice = selectedBun.price ? selectedBun.price * 2 : 0
+    setTotal(constructorList.reduce((prevValue, item) => prevValue + item.price, bunPrice))
+  }, [constructorList, selectedBun])
+
 
   function handleOrderClick() {
-    const order = ["60d3b41abdacab0026a733c6","60d3b41abdacab0026a733c6","60d3b41abdacab0026a733cc","60d3b41abdacab0026a733ce","60d3b41abdacab0026a733cf","60d3b41abdacab0026a733c8","60d3b41abdacab0026a733c9"]
-    props.onOrderClick(order)
+    if (constructorList.length !== 0 && selectedBun._id) {
+      const order = constructorList.map(ingredient => ingredient._id)
+      order.push(selectedBun._id)
+
+      dispatch(getOrderDetails(order))
+    } else {
+      console.error('Не выбраны ингредиенты!');
+    }
   }
 
   return(
     <section className={`${BurgerConstructorStyles.burgerConstructor} pt-25`}>
-      <div className={`${BurgerConstructorStyles.selectedElements}  ml-4 mb-10`}>
-
-        <ul className={`${BurgerConstructorStyles.lockedElements}`}>
-          <li>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={selectedBun && selectedBun.name}
-              price={selectedBun && selectedBun.price}
-              thumbnail={selectedBun && selectedBun.image}
-            />
-          </li>
-        </ul>
-
-        <ul  className={`${BurgerConstructorStyles.elements}`}>
-          {data.slice(0,6).map(item => (
-            item.type !== 'bun' && (
-              <li key={item._id} className={`${BurgerConstructorStyles.element}`}>
-                <DragIcon type="primary" />
-                <ConstructorElement
-                  text={item.name}
-                  price={item.price}
-                  thumbnail={item.image}
-                />
-              </li>
-            )
-          ))}
-        </ul>
-
-        <ul className={`${BurgerConstructorStyles.lockedElements}`}>
-          <li>
-            <ConstructorElement
-              type="bottom"
-              isLocked={true}
-              text={selectedBun && selectedBun.name}
-              price={selectedBun && selectedBun.price}
-              thumbnail={selectedBun && selectedBun.image}
-            />
-          </li>
-        </ul>
-      </div>
+      
+      <Burger />
+ 
       <div className={`${BurgerConstructorStyles.confirmButton} mr-4`}>
         <div className={`${BurgerConstructorStyles.total} mr-10 `}>
-          <p className="text text_type_digits-medium mr-2">610</p>
+          <p className="text text_type_digits-medium mr-2">{total}</p>
           <CurrencyIcon type="primary" />
         </div>
         <Button onClick={handleOrderClick} type="primary" size="large">
@@ -74,10 +48,6 @@ function BurgerConstructor(props) {
       </div>
     </section>
   )
-}
-
-BurgerConstructor.propTypes = {
-  onOrderClick: propTypes.func.isRequired
 }
 
 export default BurgerConstructor;
