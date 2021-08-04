@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AppStyles from './App.module.css';
 import AppHeader from '../components/AppHeader/AppHeader';
-import { ConstructorPage } from '../pages';
+import { ConstructorPage, LoginPage, RegisterPage, ForgotPage, ResetPage } from '../pages';
 function App() {
     
 
@@ -17,19 +17,19 @@ function App() {
             </Route>  
 
             <Route path='/login' exact={true}>
-              
+              <LoginPage />
             </Route>
 
             <Route path='/register' exact={true}>
-
+              <RegisterPage />
             </Route>
 
             <Route path='/forgot-password' exact={true}>
-
+              <ForgotPage />
             </Route>
 
             <Route path='/reset-password' exact={true}>
-
+              <ResetPage />
             </Route>
 
             <Route path='/feed' exact={true}>

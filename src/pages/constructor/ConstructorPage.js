@@ -1,5 +1,5 @@
 import React from 'react';
-import ConstructorStyles from './ConstructorPage.module.css';
+import ConstructorPageStyles from './ConstructorPage.module.css';
 import BurgerIngredients from '../../components/BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../../components/BurgerConstructor/BurgerConstructor';
 import OrderDetails from '../../components/OrderDetails/OrderDetails';
@@ -31,7 +31,7 @@ function ConstructorPage() {
 
   return (
     <>
-      <main className={ConstructorStyles.main}>
+      <main className={ConstructorPageStyles.main}>
         <BurgerIngredients/>
         <BurgerConstructor />
       </main>
