@@ -2,7 +2,7 @@ import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import RegisterPageStyles from './RegisterPage.module.css';
 import {Link} from 'react-router-dom'
-
+import {register} from '../../utils/apiAuth.js';
 function RegisterPage() {
   
   const [emailValue, setEmailValue] = React.useState('')
@@ -16,8 +16,15 @@ function RegisterPage() {
     alert('Icon Click Callback')
   }
   
-  const onRegisterClick = () => {
-
+  const onRegisterClick = (evt) => {
+    evt.preventDefault()
+    register({
+      email: emailValue,
+      password: passwordValue,
+      name: nameValue
+    })
+      .then(data => console.log(data.message))
+      .catch(err => console.error(err))
   }
 
   return (
