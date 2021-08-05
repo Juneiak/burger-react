@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AppStyles from './App.module.css';
 import AppHeader from '../components/AppHeader/AppHeader';
-import { ConstructorPage, LoginPage, RegisterPage, ForgotPage, ResetPage } from '../pages';
+import { ConstructorPage, LoginPage, RegisterPage, ForgotPage, ResetPage, ProfilePage } from '../pages';
 function App() {
     
 
@@ -41,7 +41,7 @@ function App() {
             </Route>
 
             <Route path='/profile' exact={true}>
-
+              <ProfilePage />
             </Route>
 
             <Route path='/profile/orders' exact={true}>

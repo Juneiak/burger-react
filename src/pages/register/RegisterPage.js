@@ -2,13 +2,14 @@ import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import RegisterPageStyles from './RegisterPage.module.css';
 import {Link} from 'react-router-dom'
-import {register} from '../../utils/apiAuth.js';
+import {register} from '../../services/actions/auth.js';
+import {useDispatch} from "react-redux";
 function RegisterPage() {
   
   const [emailValue, setEmailValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
   const [nameValue, setNameValue] = React.useState('')
-
+  const dispatch = useDispatch()
   const inputRef = React.useRef(null)
 
   const onIconClick = () => {
@@ -18,13 +19,12 @@ function RegisterPage() {
   
   const onRegisterClick = (evt) => {
     evt.preventDefault()
-    register({
+    dispatch(register({
       email: emailValue,
       password: passwordValue,
       name: nameValue
-    })
-      .then(data => console.log(data.message))
-      .catch(err => console.error(err))
+    }))
+      
   }
 
   return (

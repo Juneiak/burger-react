@@ -17,13 +17,8 @@ export function getIngredientsList() {
   return function (dispatch) {
     fetch(`${apiUrl}/ingredients`)
       .then(checkResponse)
-      .then(res => {
-        if (res.success) {
-          dispatch({type: SET_INGREDIENTS_LIST, data: res.data})
-          return
-        }
-        return Promise.reject('server error')
-        
+      .then(data => {
+          dispatch({type: SET_INGREDIENTS_LIST, data: data.data})
       })
       .catch(err => console.error(err))
   }
@@ -41,17 +36,10 @@ export function getOrderDetails(orderList) {
       })
     })
       .then(checkResponse)
-      .then(res => {
-        if (res.success) {
-          dispatch({type: SET_ORDER_DETAILS, orderDetails: res})
-          return
-        }
-        return Promise.reject('server error')
-        
+      .then(data => {
+          dispatch({type: SET_ORDER_DETAILS, orderDetails: data})
       })
-      .catch(err => {
-        console.error(err);
-      })
+      .catch(err => console.error(err))
   }
 }
 

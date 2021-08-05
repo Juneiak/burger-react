@@ -2,7 +2,7 @@ import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import ForgotPageStyles from './ForgotPage.module.css';
 import {Link} from 'react-router-dom';
-import {sendCode} from '../../utils/apiAuth.js';
+import {sendCode} from '../../utils/api.js';
 
 
 function ForgotPage() {

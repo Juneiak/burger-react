@@ -1,18 +1,11 @@
 export const apiUrl = 'https://norma.nomoreparties.space/api';
+export const apiAuthUrl = 'https://norma.nomoreparties.space/api/auth';
 
 export function checkResponse(response) {
-  // console.log(response);
   if (response.ok) {
-    return response.json()
-  }
-  return Promise.reject(`error: ${response.status}`)
-}
-
-export function checkServerResponse(response) {
-  // console.log(response);
-  if (response.success) {
-    
-    return response
-  }
-  return Promise.reject('server error')
+    return response.json().then(res => {
+      if (res.success) return res
+      return Promise.reject(res.message)
+    })
+  } else return Promise.reject(`error: ${response.status}`)
 }

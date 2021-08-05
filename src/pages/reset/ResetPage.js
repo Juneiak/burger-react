@@ -2,7 +2,7 @@ import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import ResetPageStyles from './ResetPage.module.css';
 import {Link} from 'react-router-dom';
-import {resetPassword} from '../../utils/apiAuth.js';
+import {resetPassword} from '../../utils/api.js';
 
 function ResetPage() {
   

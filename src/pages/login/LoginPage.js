@@ -1,21 +1,28 @@
 import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import LoginPageStyles from './LoginPage.module.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {login} from '../../services/actions/auth.js';
+import {useDispatch} from 'react-redux';
 
 function LoginPage() {
   
   const [emailValue, setEmailValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
   const inputRef = React.useRef(null)
+  const dispatch = useDispatch()
 
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0)
     alert('Icon Click Callback')
   }
   
-  const onEnterClick = () => {
-
+  const onEnterClick = (evt) => {
+    evt.preventDefault()
+    dispatch(login({
+      email: emailValue,
+      password: passwordValue
+    }))
   }
 
   return (
