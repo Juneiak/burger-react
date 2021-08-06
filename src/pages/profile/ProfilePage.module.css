@@ -22,9 +22,23 @@
 }
 
 .link:hover {
-  color: #fff
+  color: #F2F2F3
 }
 
-.link:last-child {
-  padding-bottom: 0;
+
+.activeLink {
+  color:#F2F2F3
+}
+
+.exictButton {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 17px 0 0;
+  transition: color 0.5s linear;
+  border: none;
+  outline: none;
+}
+
+.exictButton:hover {
+  color: #F2F2F3;
+  cursor: pointer;
 }

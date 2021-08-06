@@ -1,9 +1,9 @@
 import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import RegisterPageStyles from './RegisterPage.module.css';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {register} from '../../services/actions/auth.js';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 function RegisterPage() {
   
   const [emailValue, setEmailValue] = React.useState('')
@@ -11,6 +11,7 @@ function RegisterPage() {
   const [nameValue, setNameValue] = React.useState('')
   const dispatch = useDispatch()
   const inputRef = React.useRef(null)
+  const user = useSelector(store => store.auth.user)
 
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0)
@@ -24,9 +25,12 @@ function RegisterPage() {
       password: passwordValue,
       name: nameValue
     }))
-      
   }
 
+  if (user.name) return (
+    <Redirect to='/' />
+  )
+  
   return (
     <main className={RegisterPageStyles.main}>
       <form className={`${RegisterPageStyles.form} mb-20`}>

@@ -1,14 +1,16 @@
 import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import ResetPageStyles from './ResetPage.module.css';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, useLocation} from 'react-router-dom';
 import {resetPassword} from '../../utils/api.js';
-
+import {useSelector} from "react-redux";
 function ResetPage() {
   
   const [newPasswordValue, setNewPasswordValue] = React.useState('')
   const [codeValue, setCodeValue] = React.useState('')
   const inputRef = React.useRef(null)
+  const user = useSelector(store => store.auth.user)
+  const {state} = useLocation()
 
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0)
@@ -21,6 +23,12 @@ function ResetPage() {
       .then(data => console.log(data.message))
       .catch(err => console.error(err))
   }
+
+  if (user.name) return (
+    <Redirect to='/' />
+  )
+
+  if (!state?.codeIsSended) return <Redirect to='/forgot-password' />
 
   return (
     <main className={ResetPageStyles.main}>

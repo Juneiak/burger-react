@@ -1,19 +1,42 @@
 import React from "react";
-import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import AboutProfileStyles from './AboutProfile.module.css';
-
+import {changeProfileData} from '../../services/actions/auth.js';
+import {useSelector, useDispatch} from 'react-redux';
 
 function AboutProfile() {
 
   const [nameValue, setNameValue] = React.useState('')
   const [emailValue, setEmailValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
+  const user = useSelector(store => store.auth.user)
 
-  const inputRef = React.useRef(null)
+  const dispatch = useDispatch()
 
-  const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
+  const setInitialData = () => {
+    setNameValue(user.name)
+    setEmailValue(user.email)
+
+  }
+
+  React.useEffect(() => {
+    setInitialData()
+    
+  }, [user])
+
+  const handleSaveClick = (evt) => {
+    evt.preventDefault()
+    dispatch(changeProfileData({
+      email: emailValue,
+      password: passwordValue,
+      name: nameValue
+    }))
+      .then(data => setInitialData())
+  }
+
+  const handleCancelClick = (evt) => {
+    evt.preventDefault()
+    setInitialData()
   }
   
   return (
@@ -27,8 +50,6 @@ function AboutProfile() {
           value={nameValue}
           name={'name'}
           error={false}
-          ref={inputRef}
-          onIconClick={onIconClick}
           errorText={'Ошибка'}
           size={'default'}
         />
@@ -42,13 +63,11 @@ function AboutProfile() {
           value={emailValue}
           name={'email'}
           error={false}
-          ref={inputRef}
-          onIconClick={onIconClick}
           errorText={'Ошибка'}
           size={'default'}
         />
       </div>
-      <div className=''>
+      <div className='mb-6'>
         <Input
           type={'password'}
           placeholder={'Пароль'}
@@ -57,11 +76,17 @@ function AboutProfile() {
           value={passwordValue}
           name={'password'}
           error={false}
-          ref={inputRef}
-          onIconClick={onIconClick}
           errorText={'Ошибка'}
           size={'default'}
         />
+      </div>
+      <div className={AboutProfileStyles.buttons}>
+        <Button onClick={handleSaveClick} type="primary" size="large">
+          Сохранить
+        </Button>
+        <Button onClick={handleCancelClick} type="primary" size="large">
+          Отмена
+        </Button>
       </div>
     </div>
       

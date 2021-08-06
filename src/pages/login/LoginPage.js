@@ -1,29 +1,32 @@
 import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import LoginPageStyles from './LoginPage.module.css';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, useLocation} from 'react-router-dom';
 import {login} from '../../services/actions/auth.js';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {refreshToken} from '../../utils/api.js';
 
 function LoginPage() {
   
   const [emailValue, setEmailValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
-  const inputRef = React.useRef(null)
-  const dispatch = useDispatch()
 
-  const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
-  }
-  
+  const dispatch = useDispatch()
+  const {state} = useLocation()
+  const user = useSelector(store => store.auth.user)
+
   const onEnterClick = (evt) => {
     evt.preventDefault()
     dispatch(login({
       email: emailValue,
       password: passwordValue
     }))
+      .catch(err => {console.error(err)})
   }
+
+  if (user.name) return (
+    <Redirect to={state?.from || '/'}/>
+  )
 
   return (
     <main className={LoginPageStyles.main}>
@@ -52,8 +55,6 @@ function LoginPage() {
             value={passwordValue}
             name={'name'}
             error={false}
-            ref={inputRef}
-            onIconClick={onIconClick}
             errorText={'Ошибка'}
             size={'default'}
           />
@@ -61,6 +62,9 @@ function LoginPage() {
 
         <Button onClick={onEnterClick} type="primary" size="medium">
           Войти
+        </Button>
+        <Button onClick={(evt) => {evt.preventDefault(); refreshToken()} } type="primary" size="medium">
+          refresh
         </Button>
       </form>
       <nav className={LoginPageStyles.nav}>

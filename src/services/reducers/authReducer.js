@@ -4,13 +4,14 @@ const initialUserState = {
   user: {}
 }
 
-export const authReducer = (state=initialUserState, action) => {
+const authReducer = (state=initialUserState, action) => {
   switch (action.type) {
     case SET_USER: {
-      return {
+      const res = {
         ...state,
         user: action.data
       }
+      return res
     }
     case REMOVE_USER: {
       return {
@@ -22,3 +23,5 @@ export const authReducer = (state=initialUserState, action) => {
       return state
   }
 }
+
+export default authReducer;

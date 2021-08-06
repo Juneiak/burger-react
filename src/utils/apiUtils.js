@@ -5,7 +5,7 @@ export function checkResponse(response) {
   if (response.ok) {
     return response.json().then(res => {
       if (res.success) return res
-      return Promise.reject(res.message)
+      return Promise.reject(res)
     })
-  } else return Promise.reject(`error: ${response.status}`)
+  } else return Promise.reject(response)
 }

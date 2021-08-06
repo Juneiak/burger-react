@@ -1,25 +1,34 @@
 import React from "react";
 import AboutProfile from "../../components/AboutProfile/AboutProfile.js";
 import ProfilePageStyles from './ProfilePage.module.css';
-import {Link, Route, Switch, useRouteMatch} from 'react-router-dom';
-
+import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {logout} from '../../services/actions/auth.js';
+import {useHistory} from "react-router-dom"
 
 function ProfilePage() {
 
   const {url, path} = useRouteMatch()
-  
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  function onExitClick () {
+    dispatch(logout())
+    history.push('/')
+  }
+
   return (
     <main className={ProfilePageStyles.main}>
       <nav className={`${ProfilePageStyles.profileNav} mr-15`}>
         <ul className={`${ProfilePageStyles.navList} mb-20`}>
           <li>
-            <Link to={`${url}`} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>Профиль</Link>
+            <NavLink to={`${url}`} activeClassName={ProfilePageStyles.activeLink} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>Профиль</NavLink>
           </li>
           <li>
-            <Link to={`${url}/:orders`} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>История заказов</Link>
+            <NavLink to={`${url}/orders`} activeClassName={ProfilePageStyles.activeLink} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>История заказов</NavLink>
           </li>
           <li>
-            <Link to='' className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>Выход</Link>
+            <button onClick={onExitClick}  className={`${ProfilePageStyles.exictButton} text text_type_main-medium text_color_inactive`}>Выход</button>
           </li>
         </ul>
 
@@ -27,11 +36,11 @@ function ProfilePage() {
       </nav>
       <section>
         <Switch>
-          <Route path={path}>
+          <Route exact path={path}>
             <AboutProfile />
           </Route>
-          <Route path='/orders'>
-            
+          <Route exact path={`${path}/orders`}>
+            {/* ORDER ID */}
           </Route>
         </Switch>
       </section>

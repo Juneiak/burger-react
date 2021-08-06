@@ -2,9 +2,24 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AppStyles from './App.module.css';
 import AppHeader from '../components/AppHeader/AppHeader';
-import { ConstructorPage, LoginPage, RegisterPage, ForgotPage, ResetPage, ProfilePage } from '../pages';
+import ProtectedRoute from "../components/hocs/ProtectedRoute.js";
+import { useDispatch } from 'react-redux';
+import { getUser } from '../services/actions/auth.js';
+import { 
+  ConstructorPage,
+  LoginPage,
+  RegisterPage,
+  ForgotPage,
+  ResetPage,
+  ProfilePage } from '../pages';
+
 function App() {
-    
+
+  const dispatch = useDispatch()
+  
+  React.useEffect(() => {
+    dispatch(getUser())
+  }, [])
 
   return (
     <BrowserRouter>
@@ -32,33 +47,9 @@ function App() {
               <ResetPage />
             </Route>
 
-            <Route path='/feed' exact={true}>
-
-            </Route>
-
-            <Route path='/feed/:id' exact={true}>
-
-            </Route>
-
-            <Route path='/profile' exact={true}>
+            <ProtectedRoute path='/profile'>
               <ProfilePage />
-            </Route>
-
-            <Route path='/profile/orders' exact={true}>
-
-            </Route>
-
-            <Route path='/profile/orders/:id' exact={true}>
-
-            </Route>
-
-            <Route path='/ingredients/:id' exact={true}>
-
-            </Route>
-
-            <Route>
-
-            </Route>
+            </ProtectedRoute>
 
           </Switch>
       </div>

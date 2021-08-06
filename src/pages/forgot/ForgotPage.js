@@ -1,21 +1,26 @@
 import React from "react";
 import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import ForgotPageStyles from './ForgotPage.module.css';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, useHistory} from 'react-router-dom';
 import {sendCode} from '../../utils/api.js';
-
+import {useSelector} from "react-redux";
 
 function ForgotPage() {
   
   const [emailRestoreValue, setEmailRestoreValue] = React.useState('')
-
+  const user = useSelector(store => store.auth.user)
+  const history = useHistory()
   const onRestoreClick = (evt) => {
     evt.preventDefault()
     sendCode({email: emailRestoreValue})
-      .then(data => console.log(data.message))
+      .then(data => {history.push('/reset-password', {codeIsSended: true})})
       .catch(err => console.error(err))
   }
 
+  if (user.name) return (
+    <Redirect to='/' />
+  )
+  
   return (
     <main className={ForgotPageStyles.main}>
       <form className={`${ForgotPageStyles.form} mb-20`}>

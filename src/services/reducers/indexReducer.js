@@ -16,8 +16,7 @@ const inititialIngredientsState = {
   orderDetails: {},
   selectedBun: {}
 }
-
-export const indexReducer = (state=inititialIngredientsState, action) => {
+const indexReducer = (state=inititialIngredientsState, action) => {
   switch (action.type) {
     case SET_INGREDIENTS_LIST: {
       return {
@@ -99,6 +98,7 @@ export const indexReducer = (state=inititialIngredientsState, action) => {
   }
 }
 
+export default indexReducer;
 
 
 

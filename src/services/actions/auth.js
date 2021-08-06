@@ -1,11 +1,12 @@
 import { apiAuthUrl, checkResponse} from "../../utils/apiUtils.js";
 import {setCookie, getCookie, deleteCookie} from '../../utils/cookieUtils.js';
 import { stripBearerToken } from "../../utils/utils.js";
+import { fetchWithRefresh } from '../../utils/api.js';
+
 export const SET_USER = 'SET_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 
 export const register = (registerData) => {
-  // console.log(registerData);
   return function (dispatch) {
     fetch(`${apiAuthUrl}/register`, {
       method: 'POST',
@@ -18,7 +19,7 @@ export const register = (registerData) => {
       .then(data => {
         dispatch({type: SET_USER, data: data.user})
         localStorage.setItem('Rtoken', data.refreshToken)
-        setCookie('Atoken', stripBearerToken(data.accessToken), {expires: 60*20})
+        setCookie('Atoken', stripBearerToken(data.accessToken))
       })
       .catch(err => console.error(err))
   }
@@ -26,7 +27,7 @@ export const register = (registerData) => {
 
 export const login = (loginData) => {
   return function (dispatch) {
-    fetch(`${apiAuthUrl}/login`, {
+    return fetch(`${apiAuthUrl}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -35,12 +36,11 @@ export const login = (loginData) => {
     })
       .then(checkResponse)
       .then(data => {
-        console.log(data);
         dispatch({type: SET_USER, data: data.user})
         localStorage.setItem('Rtoken', data.refreshToken)
-        setCookie('Atoken', stripBearerToken(data.accessToken), {expires: 60*20})
+        setCookie('Atoken', stripBearerToken(data.accessToken))
+        console.log('logged');
       })
-      .catch(err => console.error(err))
   }
 }
 
@@ -48,13 +48,13 @@ export const logout = () => {
   return function (dispatch) {
     const Rtoken = localStorage.getItem('Rtoken')
     if (Rtoken) {
-      fetch(`${apiAuthUrl}/logout`, {
+      return fetch(`${apiAuthUrl}/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          token: `{{${Rtoken}}}`
+          token: Rtoken
         })
       })
         .then(checkResponse)
@@ -65,42 +65,43 @@ export const logout = () => {
           deleteCookie('Atoken')
         })
         .catch(err => console.error(err))
-    }
-    console.error('you have already logut');
+    } else {
+      console.error('you have already logut');
+      return Promise.reject()
+    } 
+    
   }
 }
 
-export const refreshToken = () => {
-  const Rtoken = localStorage.getItem('Rtoke')
-  if (!getCookie('Atoken') && Rtoken) {
-    fetch(`${apiAuthUrl}/token`, {
-      method: 'POST',
+export function getUser () {
+  return function (dispatch) {
+    return fetchWithRefresh(`${apiAuthUrl}/user`, {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        token: `{{${Rtoken}}}`
-      })
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + getCookie('Atoken')
+      }
     })
-      .then(checkResponse)
       .then(data => {
-        setCookie('Atoken', stripBearerToken(data.accessToken), {expires: 60*20})
-        return data
+        dispatch({type: SET_USER, data: data.user})
+        return (data)
       })
       .catch(err => console.error(err))
   }
-  console.error('tokens error')
 }
 
-export const fetchWithRefresh = (url, options) => {
-  return fetch(url, options)
-    .then(checkResponse)
-    .catch(err => {
-      if (err === 'jwt expired') {
-        return refreshToken()
-          .then(data => fetch(url, options))
-          .then(checkResponse)
-          .catch(err => Promise.reject('access error'))
-      } else return Promise.reject(err)
+export function changeProfileData (newProfileData) {
+  return function (dispatch) {
+    return fetchWithRefresh(`${apiAuthUrl}/user`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + getCookie('Atoken')
+      },
+      body: JSON.stringify(newProfileData)
     })
+      .then(data => {
+        dispatch({type: SET_USER, data: data.user})
+      })
+  }
 }
