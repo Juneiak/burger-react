@@ -46,9 +46,9 @@ function ConstructorPage() {
 
       {orderDetails.success && <Modal isOpen={orderDetails.success ? true : false} onClose={handleCloseModal}><OrderDetails /></Modal>}
       { selectedIngredient?._id &&
-        <Route path={`/ingredients/:id`} >
+        // <Route path={`/ingredients/:id`} >
           <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseIngredientModal}><IngredientDetails /></Modal>
-        </Route>
+        // </Route>
       }
     </>
   );
