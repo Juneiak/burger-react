@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { Switch, Route, useLocation} from 'react-router-dom';
 import AppStyles from './App.module.css';
 import AppHeader from '../components/AppHeader/AppHeader';
 import ProtectedRoute from "../components/hocs/ProtectedRoute.js";
@@ -11,50 +11,60 @@ import {
   RegisterPage,
   ForgotPage,
   ResetPage,
-  ProfilePage } from '../pages';
+  ProfilePage,
+  NotFound404Page,
+  IngredientDetailsPage } from '../pages';
 
 function App() {
 
   const dispatch = useDispatch()
-  
+  const location = useLocation()
+
   React.useEffect(() => {
     dispatch(getUser())
   }, [])
 
+  const background = location?.state?.background
+
   return (
-    <BrowserRouter>
       <div className={AppStyles.app}>
         <AppHeader />
-          <Switch>
+          <Switch location={background || location}>
 
-            <Route path='/' exact={true}>
+            <Route path='/' exact>
               <ConstructorPage />
             </Route>  
 
-            <Route path='/login' exact={true}>
+            <Route path='/login' exact>
               <LoginPage />
             </Route>
 
-            <Route path='/register' exact={true}>
+            <Route path='/register' exact>
               <RegisterPage />
             </Route>
 
-            <Route path='/forgot-password' exact={true}>
+            <Route path='/forgot-password' exact>
               <ForgotPage />
             </Route>
 
-            <Route path='/reset-password' exact={true}>
+            <Route path='/reset-password' exact>
               <ResetPage />
             </Route>
 
-            <ProtectedRoute path='/profile'>
+            <ProtectedRoute path='/profile' exact>
               <ProfilePage />
             </ProtectedRoute>
 
+            {!background && 
+            <Route path='/ingredients/:id' >
+              <IngredientDetailsPage />
+            </Route>}
+
+            <Route >
+              <NotFound404Page />
+            </Route>
           </Switch>
       </div>
-    </BrowserRouter>
-
   );
 }
 

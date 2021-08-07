@@ -4,7 +4,6 @@ import LoginPageStyles from './LoginPage.module.css';
 import {Link, Redirect, useLocation} from 'react-router-dom';
 import {login} from '../../services/actions/auth.js';
 import {useDispatch, useSelector} from 'react-redux';
-import {refreshToken} from '../../utils/api.js';
 
 function LoginPage() {
   
@@ -62,9 +61,6 @@ function LoginPage() {
 
         <Button onClick={onEnterClick} type="primary" size="medium">
           Войти
-        </Button>
-        <Button onClick={(evt) => {evt.preventDefault(); refreshToken()} } type="primary" size="medium">
-          refresh
         </Button>
       </form>
       <nav className={LoginPageStyles.nav}>

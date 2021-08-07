@@ -4,14 +4,20 @@ import {useDrag} from 'react-dnd';
 import {SELECT_INGREDIENT} from '../../services/actions/index.js';
 import {useDispatch, useSelector} from 'react-redux';
 import React from "react";
+import {useHistory, useLocation} from 'react-router-dom';
+import propTypes from 'prop-types';
 
 function Ingredient({ingredientData, id}) {
   const [count, setCount] = React.useState(0)
   const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
+
   const {constructorList, selectedBun} = useSelector(store => ({
     constructorList: store.index.constructorList,
     selectedBun: store.index.selectedBun
   }))
+
   React.useEffect(() => {
     if (ingredientData.type === 'bun') {
       if (selectedBun._id === id) {
@@ -35,6 +41,8 @@ function Ingredient({ingredientData, id}) {
 
   function onIngredientClick() {
     dispatch({type: SELECT_INGREDIENT, id})
+    
+    history.push(`/ingredients/${id}`, {background: location})
   }
 
   
@@ -57,5 +65,23 @@ function Ingredient({ingredientData, id}) {
     </li>
     
   )
+}
+
+Ingredient.propTypes = {
+  ingredientData: propTypes.shape({
+    _id: propTypes.string,
+    name: propTypes.string.isRequired,
+    type: propTypes.string.isRequired,
+    proteins: propTypes.number,
+    fat: propTypes.number,
+    carbohydrates: propTypes.number,
+    calories: propTypes.number,
+    price: propTypes.number.isRequired,
+    image: propTypes.string.isRequired,
+    image_mobile: propTypes.string,
+    image_large: propTypes.string,
+    __v: propTypes.number
+  }).isRequired,
+  id: propTypes.string.isRequired
 }
 export default Ingredient;

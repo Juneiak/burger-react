@@ -4,6 +4,7 @@ import RegisterPageStyles from './RegisterPage.module.css';
 import {Link, Redirect} from 'react-router-dom'
 import {register} from '../../services/actions/auth.js';
 import {useDispatch, useSelector} from "react-redux";
+
 function RegisterPage() {
   
   const [emailValue, setEmailValue] = React.useState('')

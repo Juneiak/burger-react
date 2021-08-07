@@ -15,7 +15,7 @@ export const REMOVE_INGREDIENT_FROM_CONSTRUCTOR = 'REMOVE_INGREDIENT_FROM_CONSTR
 
 export function getIngredientsList() {
   return function (dispatch) {
-    fetch(`${apiUrl}/ingredients`)
+    return fetch(`${apiUrl}/ingredients`)
       .then(checkResponse)
       .then(data => {
           dispatch({type: SET_INGREDIENTS_LIST, data: data.data})

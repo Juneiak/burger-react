@@ -4,15 +4,17 @@ import Burger from './Burger';
 import { getOrderDetails } from '../../services/actions/index.js';
 import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
-
+import {useHistory, useLocation} from "react-router-dom";
 function BurgerConstructor() {
 
   const [total, setTotal] = React.useState(0)
-
+  const history = useHistory()
   const dispatch = useDispatch()
-  const {constructorList, selectedBun} = useSelector(store => ({
+  const location = useLocation()
+  const {constructorList, selectedBun, user} = useSelector(store => ({
     constructorList: store.index.constructorList,
-    selectedBun: store.index.selectedBun
+    selectedBun: store.index.selectedBun,
+    user: store.auth.user
   }))
 
   React.useEffect(() => {
@@ -25,8 +27,9 @@ function BurgerConstructor() {
     if (constructorList.length !== 0 && selectedBun._id) {
       const order = constructorList.map(ingredient => ingredient._id)
       order.push(selectedBun._id)
-
-      dispatch(getOrderDetails(order))
+      if (!user.name) {
+        history.push('/login', {from: location})
+      } else dispatch(getOrderDetails(order))
     } else {
       console.error('Не выбраны ингредиенты!');
     }

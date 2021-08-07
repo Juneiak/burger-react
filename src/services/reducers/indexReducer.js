@@ -78,7 +78,7 @@ const indexReducer = (state=inititialIngredientsState, action) => {
       }
     }
 
-    case SELECT_INGREDIENT: {
+    case SELECT_INGREDIENT: { 
       return {
         ...state,
         selectedIngredient: state.ingredientsList.find(ingredient => ingredient._id === action.id)

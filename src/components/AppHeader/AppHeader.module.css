@@ -23,8 +23,8 @@
 
 .link {
   text-decoration: none;
-  color: #F2F2F3;
   display: flex;
+  color: #8585AD;
   align-content: center;
   box-sizing: border-box;
   border-radius: 40px;
@@ -40,6 +40,6 @@
 }
 
 
-.acttiveProfileLink {
+.activeProfileLink {
   color: #F2F2F3;
 }

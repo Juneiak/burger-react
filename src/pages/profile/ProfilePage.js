@@ -22,7 +22,7 @@ function ProfilePage() {
       <nav className={`${ProfilePageStyles.profileNav} mr-15`}>
         <ul className={`${ProfilePageStyles.navList} mb-20`}>
           <li>
-            <NavLink to={`${url}`} activeClassName={ProfilePageStyles.activeLink} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>Профиль</NavLink>
+            <NavLink exact to={`${url}`} activeClassName={ProfilePageStyles.activeLink} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>Профиль</NavLink>
           </li>
           <li>
             <NavLink to={`${url}/orders`} activeClassName={ProfilePageStyles.activeLink} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>История заказов</NavLink>
