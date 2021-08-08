@@ -6,11 +6,15 @@ import {
   ADD_INGREDIENT_INTO_CONSTRUCTOR,
   REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
   CLEAR_ORDER_DETAILS,
-  UPDATE_SELECTED_INGREDIENT
+  UPDATE_SELECTED_INGREDIENT,
+  SET_INGREDIENTS_LIST_IS_LOADING,
+  SET_INGREDIENTS_LIST_IS_ERROR
 } from '../actions/index.js';
 
 const inititialIngredientsState = {
   ingredientsList: [],
+  ingredientListIsLoaded: false,
+  ingredientListIsError: false,
   selectedIngredient: {},
   constructorList: [],
   orderDetails: {},
@@ -21,9 +25,26 @@ const indexReducer = (state=inititialIngredientsState, action) => {
     case SET_INGREDIENTS_LIST: {
       return {
         ...state,
-        ingredientsList: action.data
+        ingredientsList: action.data,
+        ingredientListIsLoaded: true,
+        ingredientListIsError: false,
       }
     }
+    
+     case (SET_INGREDIENTS_LIST_IS_LOADING): {
+       return {
+         ...state,
+         ingredientListIsLoaded: false
+       }
+     }
+
+     case (SET_INGREDIENTS_LIST_IS_ERROR): {
+       return {
+         ...state,
+         ingredientListIsLoaded: true,
+         ingredientListIsError: true
+       }
+     }
 
     case ADD_INGREDIENT_INTO_CONSTRUCTOR: {
       if (action.ingredientType === 'bun') {

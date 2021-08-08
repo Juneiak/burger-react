@@ -1,10 +1,14 @@
 import React from 'react';
-import { Switch, Route, useLocation} from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory} from 'react-router-dom';
 import AppStyles from './App.module.css';
 import AppHeader from '../components/AppHeader/AppHeader';
 import ProtectedRoute from "../components/hocs/ProtectedRoute.js";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../services/actions/auth.js';
+import IngredientDetails from '../components/IngredientDetails/IngredientDetails';
+import Modal from '../components/Modal/Modal';
+import {getIngredientsList, REMOVE_SELECTED_INGREDIENT} from '../services/actions/index.js'
+
 import { 
   ConstructorPage,
   LoginPage,
@@ -19,12 +23,20 @@ function App() {
 
   const dispatch = useDispatch()
   const location = useLocation()
+  const history = useHistory()
+  const selectedIngredient = useSelector(store => store.index.selectedIngredient)
 
   React.useEffect(() => {
+    dispatch(getIngredientsList())
     dispatch(getUser())
   }, [])
 
-  const background = location?.state?.background
+  function handleCloseIngredientModal() {
+    dispatch({type: REMOVE_SELECTED_INGREDIENT})
+    history.goBack()
+  }
+
+  const background =(history.action === "PUSH" || history.action === 'REPLACE') && location?.state?.background
 
   return (
       <div className={AppStyles.app}>
@@ -55,15 +67,20 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
 
-            {!background && 
             <Route path='/ingredients/:id' >
               <IngredientDetailsPage />
-            </Route>}
+            </Route>
 
             <Route >
               <NotFound404Page />
             </Route>
           </Switch>
+
+          { background && selectedIngredient?._id &&
+            <Route path={`/ingredients/:id`} >
+              <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseIngredientModal}><IngredientDetails /></Modal>
+            </Route>
+          }
           
       </div>
   );

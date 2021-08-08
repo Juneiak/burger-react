@@ -26,8 +26,6 @@ export const sendCode = (restoreData) => {
 
 export const refreshToken = () => {
   const Rtoken = localStorage.getItem('Rtoken')
-  console.log('try refresh', Rtoken);// <--------------------------------------
-
   if (Rtoken) {
     return fetch(`${apiAuthUrl}/token`, {
       method: 'POST',
@@ -40,7 +38,6 @@ export const refreshToken = () => {
     })
       .then(checkResponse)
       .then(data => {
-        console.log('refreshed!!', data);  // <--------------------------------------
         setCookie('Atoken', stripBearerToken(data.accessToken))
         localStorage.setItem('Rtoken', data.refreshToken)
         return data
@@ -54,7 +51,6 @@ export const fetchWithRefresh = (url, options) => {
     .then(checkResponse)
     .catch(err => {
       if (err.message === 'jwt expired' || err.status === 403) {
-        console.log(`try to refresh`);// <--------------------------------------
         return refreshToken()
           .then(data => {
             options.headers.Authorization = "Bearer " + getCookie('Atoken')

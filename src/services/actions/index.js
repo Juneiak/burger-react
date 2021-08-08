@@ -1,6 +1,8 @@
 import { checkResponse, apiUrl } from "../../utils/apiUtils";
 
-export const SET_INGREDIENTS_LIST = 'GET_INGREDIENTS_DATA';
+export const SET_INGREDIENTS_LIST = 'SET_INGREDIENTS_DATA';
+export const SET_INGREDIENTS_LIST_IS_LOADING = 'SET_INGREDIENTS_LIST_IS_LOADING';
+export const SET_INGREDIENTS_LIST_IS_ERROR = 'SET_INGREDIENTS_LIST_IS_ERROR';
 
 export const SELECT_INGREDIENT = 'SELECT_INGREDIENT';
 export const REMOVE_SELECTED_INGREDIENT = 'REMOVE_SELECTED_INGREDIENT';
@@ -15,12 +17,18 @@ export const REMOVE_INGREDIENT_FROM_CONSTRUCTOR = 'REMOVE_INGREDIENT_FROM_CONSTR
 
 export function getIngredientsList() {
   return function (dispatch) {
+    dispatch({type: SET_INGREDIENTS_LIST_IS_LOADING})
     return fetch(`${apiUrl}/ingredients`)
       .then(checkResponse)
       .then(data => {
           dispatch({type: SET_INGREDIENTS_LIST, data: data.data})
+          return data
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err)
+        dispatch({type: SET_INGREDIENTS_LIST_IS_ERROR})
+        return Promise.reject('ingredients loading error')
+      })
   }
 }
 
