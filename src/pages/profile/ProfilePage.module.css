@@ -1,0 +1,44 @@
+.main {
+  padding-top: 120px;
+  display: flex;
+}
+
+.profileNav {
+  max-width: 320px;
+  width: 100%;
+}
+
+.navList {
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  transition: color 0.5s linear;
+  text-decoration: none;
+  padding: 17px 0 17px;
+  display: block;
+}
+
+.link:hover {
+  color: #F2F2F3
+}
+
+
+.activeLink {
+  color:#F2F2F3
+}
+
+.exictButton {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 17px 0 0;
+  transition: color 0.5s linear;
+  border: none;
+  outline: none;
+}
+
+.exictButton:hover {
+  color: #F2F2F3;
+  cursor: pointer;
+}

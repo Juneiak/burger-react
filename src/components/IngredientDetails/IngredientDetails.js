@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+
 import { useSelector } from 'react-redux';
 import ingredientDetailsStyles from './IngredientDetails.module.css';
 
@@ -6,6 +6,9 @@ function IngredientDetails() {
 
   const ingredient = useSelector(store => store.index.selectedIngredient)
 
+  if (!ingredient?._id)  {
+    return null
+  }
   return (
       <div className={ingredientDetailsStyles.content}>
         <h2 className={`${ingredientDetailsStyles.title} text text_type_main-large`}>Детали ингредиента</h2>
