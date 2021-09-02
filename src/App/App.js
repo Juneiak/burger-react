@@ -17,7 +17,8 @@ import {
   ResetPage,
   ProfilePage,
   NotFound404Page,
-  IngredientDetailsPage } from '../pages';
+  IngredientDetailsPage,
+  FeedPage } from '../pages';
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
     history.goBack()
   }
 
-  const background =(history.action === "PUSH" || history.action === 'REPLACE') && location?.state?.background
+  const background = (history.action === "PUSH" || history.action === 'REPLACE') && location?.state?.background
 
   return (
       <div className={AppStyles.app}>
@@ -69,6 +70,14 @@ function App() {
 
             <Route path='/ingredients/:id' >
               <IngredientDetailsPage />
+            </Route>
+
+            <Route path='/feed'>
+              <FeedPage />
+            </Route>
+
+            <Route path='/feed/:id'>
+              
             </Route>
 
             <Route >

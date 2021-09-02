@@ -6,10 +6,10 @@ import {getCookie} from '../../utils/cookieUtils.js'
 
 function AppHeader() {
 
-  function onClick() {
-    console.log(getCookie('Atoken'));
-    console.log(localStorage.getItem('Rtoken'));
-  }
+  // function onClick() {
+  //   console.log(getCookie('Atoken'));
+  //   console.log(localStorage.getItem('Rtoken'));
+  // }
 
   return (
     <header className={`${headerStyles.header} pb-4 pt-4`}>
@@ -22,10 +22,10 @@ function AppHeader() {
             </NavLink>
           </li>
           <li className={headerStyles.listItem}>
-            <a onClick={onClick} className={`${headerStyles.link} p-5`} href="#" target="_self">
-              <ListIcon type={"secondary"} />
-              <p className="text text_type_main-default text_color_inactive ml-2">Лента заказов</p>
-            </a>
+            <NavLink exact to='/feed' className={`${headerStyles.link} p-5 mr-2`} activeClassName={headerStyles.activeProfileLink}>
+              <BurgerIcon type={"secondary"} />
+              <p style={{color: 'inherit'}} className="text text_type_main-default text_color_inactive ml-2">Лента заказов</p>
+            </NavLink>
           </li>
         </ul>
       </nav>

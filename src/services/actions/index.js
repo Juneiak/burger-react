@@ -21,6 +21,7 @@ export function getIngredientsList() {
     return fetch(`${apiUrl}/ingredients`)
       .then(checkResponse)
       .then(data => {
+          
           dispatch({type: SET_INGREDIENTS_LIST, data: data.data})
           return data
       })

@@ -3,10 +3,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding-top: 180px;
 }
 
 .form {
-  padding-top: 180px;
   display: flex;
   align-items: center;
   flex-direction: column;

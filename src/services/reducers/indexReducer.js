@@ -84,6 +84,7 @@ const indexReducer = (state=inititialIngredientsState, action) => {
     }
 
     case SET_ORDER_DETAILS: {
+      console.log(action.orderDetails);
       return {
         ...state,
         orderDetails: action.orderDetails
