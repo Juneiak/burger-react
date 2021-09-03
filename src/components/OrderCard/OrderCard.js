@@ -4,14 +4,17 @@ import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useSelector} from 'react-redux';
 
 function OrderCard({orderData: {ingredients: selectedIngredientsIdList, number, status, createdAt}}) {
-  const createdTime =  new Date(Date.parse(createdAt)).toDateString();
+
+  const createdTime =  new Date(Date.parse(createdAt)).toDateString()
   const orderName = 'Black Hole Singularity острый бургер'
   const ingredientsList = useSelector(store => store.index.ingredientsList)
-  const selectedIngredients = ingredientsList.filter((ingredient) => selectedIngredientsIdList.includes(ingredient._id))
 
-  const ingredientsToShow = []
+  const selectedIngredients = ingredientsList.filter((ingredient) => selectedIngredientsIdList.includes(ingredient._id))
+  let restIngredients = selectedIngredients.splice(5,)
   
   const orderTotalPrice = 1000;
+
+
   return (
     <article className={`${styles.card}`}>
       <div className={styles.header}>
@@ -26,15 +29,22 @@ function OrderCard({orderData: {ingredients: selectedIngredientsIdList, number, 
       <div className={styles.list}>
 
         <ul className={styles.selectedIngredientsList}>
-          {selectedIngredients.map((selectedIngredient, index) => (
-            <li key={index} className={styles.selectedIngredient}>
-              <img className={styles.ingredientImage} src={selectedIngredient.image} alt={selectedIngredient.name}></img>
+          {selectedIngredients.map((ingredient, index) => (
+            <li key={index} style={{zIndex: `${5-index}`}}>
+              <img  className={styles.ingredientImage} src={ingredient.image} ></img>
             </li>
           ))}
+          {restIngredients.length > 0 &&
+            <li>
+              <div className={styles.restIngredients} style={{backgroundImage: `url(${restIngredients[0].image})`}}>
+                {restIngredients.length > 1 && <p className={styles.restIngredientsCount}>{`+${restIngredients.length}`}</p>}
+              </div>
+            </li>
+          }
         </ul>
 
         <div className={styles.price}>
-          <p className={styles.total}>{orderTotalPrice}</p>
+          <p className={`${styles.total} text text_type_digits-default`}>{orderTotalPrice}</p>
           <CurrencyIcon type="primary" />
         </div>
 
