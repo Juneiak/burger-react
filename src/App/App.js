@@ -6,7 +6,7 @@ import ProtectedRoute from "../components/hocs/ProtectedRoute.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../services/actions/auth.js';
 import IngredientDetails from '../components/IngredientDetails/IngredientDetails';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/modals/Modal/Modal';
 import {getIngredientsList, REMOVE_SELECTED_INGREDIENT} from '../services/actions/index.js'
 
 import { 
@@ -64,7 +64,7 @@ function App() {
               <ResetPage />
             </Route>
 
-            <ProtectedRoute path='/profile' exact>
+            <ProtectedRoute path='/profile'>
               <ProfilePage />
             </ProtectedRoute>
 

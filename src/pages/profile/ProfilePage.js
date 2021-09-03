@@ -1,10 +1,10 @@
-import React from "react";
 import AboutProfile from "../../components/AboutProfile/AboutProfile.js";
 import ProfilePageStyles from './ProfilePage.module.css';
 import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {logout} from '../../services/actions/auth.js';
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import OrderHistory from "../../components/OrderHistory/OrderHistory.js";
 
 function ProfilePage() {
 
@@ -34,13 +34,13 @@ function ProfilePage() {
 
         <p className='text text_type_main-default text_color_inactive'>В этом разделе вы можете изменить свои персональные данные</p>
       </nav>
-      <section>
+      <section className={ProfilePageStyles.routeSide}>
         <Switch>
           <Route exact path={path}>
             <AboutProfile />
           </Route>
           <Route exact path={`${path}/orders`}>
-            {/* ORDER ID */}
+            <OrderHistory />
           </Route>
         </Switch>
       </section>

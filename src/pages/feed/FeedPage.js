@@ -1,9 +1,8 @@
-import React from 'react';
+import OrderCardList from '../../components/OrderCardList/OrderCardList';
 import styles from './FeedPage.module.css';
-import OrderCard from '../../components/OrderCard/OrderCard.js';
+import {Route, useRouteMatch} from 'react-router-dom';
 
 function FeedPage() {
-
   const fetch = {
     "success": true,
     "orders": [
@@ -55,21 +54,21 @@ function FeedPage() {
   } 
 
   const {orders} = fetch
+  const {path} = useRouteMatch()
 
   return (
+    <>
     <main className={styles.main}>
       <h1 className={`${styles.title} text text_type_main-large mb-5`}>Лента заказов</h1>
       <div className={styles.grid}>
 
-        <section className={styles.feed}>
-          <ul className={styles.list}>
-            {orders.map((order, index) => (
-              <OrderCard orderData={order} key={index} />
-            ))}
-          </ul>
+        <section>
+          <div className={styles.orderList}>
+          <OrderCardList orders={orders} />
+          </div>
         </section>
 
-        <section className={styles.orders}>
+        <section className={styles.ordersInfo}>
 
           <div className={`${styles.statusLists} mb-15`}>
               <ul className={styles.statusList}>
@@ -103,6 +102,12 @@ function FeedPage() {
       </div>
 
     </main>
+
+    <Route exact path={`${path}/:id`}>
+      
+    </Route>
+
+    </>
   )
 }
 

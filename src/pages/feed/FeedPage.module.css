@@ -16,34 +16,11 @@
   gap: 60px;
 }
 
-.feed {
-
+.orderList {
+  max-width: 584px;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  list-style: none;
-  max-height: 1080px;
-  overflow: auto;
-  margin: 0;
-}
-
-.list::-webkit-scrollbar {
-  width: 8px;
-  background-color: #2F2F37;
-  margin-left: 8px;
-}
-
-.list::-webkit-scrollbar-thumb {
-  width: 8px;
-  height: 80%;
-  background-color: #8585AD;
-}
-
-.orders {
+.ordersInfo {
   display: flex;
   align-items: center;
   flex-direction: column;

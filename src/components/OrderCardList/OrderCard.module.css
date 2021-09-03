@@ -8,11 +8,17 @@
   border-radius: 40px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 16px;
-  max-width: 584px;
+  
 }
 
-.card:last-child {
+.commonLink {
+  color: #F2F2F3;
+  text-decoration: none;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.commonLink:last-child {
   margin-bottom: 0;
 }
 

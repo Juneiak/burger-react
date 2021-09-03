@@ -3,7 +3,7 @@ import ConstructorPageStyles from './ConstructorPage.module.css';
 import BurgerIngredients from '../../components/BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../../components/BurgerConstructor/BurgerConstructor';
 import OrderDetails from '../../components/OrderDetails/OrderDetails';
-import Modal from '../../components/Modal/Modal';
+import Modal from '../../components/modals/Modal/Modal';
 import {REMOVE_SELECTED_INGREDIENT, CLEAR_ORDER_DETAILS} from '../../services/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux';
 
