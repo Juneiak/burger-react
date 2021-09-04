@@ -1,7 +1,7 @@
 import React from 'react';
 import ConstructorPageStyles from './ConstructorPage.module.css';
-import BurgerIngredients from '../../components/BurgerIngredients/BurgerIngredients';
-import BurgerConstructor from '../../components/BurgerConstructor/BurgerConstructor';
+import BurgerIngredients from '../../components/burgerIngredients/BurgerIngredients';
+import BurgerConstructor from '../../components/burgerConstructor/BurgerConstructor';
 import OrderDetails from '../../components/OrderDetails/OrderDetails';
 import Modal from '../../components/modals/Modal/Modal';
 import {REMOVE_SELECTED_INGREDIENT, CLEAR_ORDER_DETAILS} from '../../services/actions/index.js'

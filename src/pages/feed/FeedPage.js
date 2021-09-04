@@ -1,4 +1,4 @@
-import OrderCardList from '../../components/OrderCardList/OrderCardList';
+import OrderCardList from '../../components/orderCardList/OrderCardList';
 import styles from './FeedPage.module.css';
 import {Route, useRouteMatch} from 'react-router-dom';
 
@@ -57,7 +57,6 @@ function FeedPage() {
   const {path} = useRouteMatch()
 
   return (
-    <>
     <main className={styles.main}>
       <h1 className={`${styles.title} text text_type_main-large mb-5`}>Лента заказов</h1>
       <div className={styles.grid}>
@@ -102,12 +101,6 @@ function FeedPage() {
       </div>
 
     </main>
-
-    <Route exact path={`${path}/:id`}>
-      
-    </Route>
-
-    </>
   )
 }
 

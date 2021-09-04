@@ -1,8 +1,8 @@
-import styles from './OrderDetails.module.css';
+import styles from './OrderInfo.module.css';
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
 function OrderInfo() {
-  const {image, number, orderName, status, orderTotalPrice, ingredientPrice, ingredientAmount, createdTime} = {
+  const {ingredientName, image, number, orderName, status, orderTotalPrice, ingredientPrice, ingredientAmount, createdTime} = {
     number: '034533',
     orderName: 'Black Hole Singularity острый бургер',
     status: 'Выполнен',
@@ -10,22 +10,86 @@ function OrderInfo() {
     ingredientPrice: '20',
     createdTime: 'Вчера, 13:50 i-GMT+3',
     ingredientAmount: 2,
+    ingredientName: 'Флюоресцентная булка R2-D3',
     image: 'https://code.s3.yandex.net/react/code/meat-03.png'
   }
   return (
     <div className={styles.content}>
-      <p className={styles.orderNumber}>{`#${number}`}</p>
-      <h3 className='text text_type_main-medium'>{orderName}</h3>
-      <p className='text text_type_main-default'>{status}</p>
-      <p className='text text_type_main-medium'>Состав:</p>
+      <p className='text text_type_digits-default mb-10'>{`#${number}`}</p>
+      <div className={styles.about}>
+        <h3 className='text text_type_main-medium mb-3'>{orderName}</h3>
+        <p style={{color: '#00CCCC'}} className='text text_type_main-default mb-15'>{status}</p>
+        <p className='text text_type_main-medium mb-6'>Состав:</p>
+      </div>
+      
 
-      <ul>
+      <ul className={styles.ingredientsList}>
         <li className={styles.ingredient}>
           <div className={styles.info}>
             <img src={image} className={styles.image}></img>
-            <p className='text text_type_main-default'></p>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
           </div>
-          <div className={styles.price}>
+          <div className={`${styles.price} ml-4`}>
+            <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+        </li>
+        <li className={styles.ingredient}>
+          <div className={styles.info}>
+            <img src={image} className={styles.image}></img>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
+          </div>
+          <div className={`${styles.price} ml-4`}>
+            <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+        </li>
+        <li className={styles.ingredient}>
+          <div className={styles.info}>
+            <img src={image} className={styles.image}></img>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
+          </div>
+          <div className={`${styles.price} ml-4`}>
+            <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+        </li>
+        <li className={styles.ingredient}>
+          <div className={styles.info}>
+            <img src={image} className={styles.image}></img>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
+          </div>
+          <div className={`${styles.price} ml-4`}>
+            <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+        </li>
+        <li className={styles.ingredient}>
+          <div className={styles.info}>
+            <img src={image} className={styles.image}></img>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
+          </div>
+          <div className={`${styles.price} ml-4`}>
+            <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+        </li>
+        <li className={styles.ingredient}>
+          <div className={styles.info}>
+            <img src={image} className={styles.image}></img>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
+          </div>
+          <div className={`${styles.price} ml-4`}>
+            <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+        </li>
+        <li className={styles.ingredient}>
+          <div className={styles.info}>
+            <img src={image} className={styles.image}></img>
+            <p className='text text_type_main-default ml-4'>{ingredientName}</p>
+          </div>
+          <div className={`${styles.price} ml-4`}>
             <p className={`${styles.total} text text_type_digits-default`}>{`${ingredientAmount} x ${ingredientPrice}`}</p>
             <CurrencyIcon type="primary" />
           </div>

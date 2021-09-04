@@ -1,4 +1,4 @@
-import OrderCard from './OrderCard'
+import OrderCard from './OrderCard';
 import styles from './OrderCardList.module.css'
 
 function OrderCardList({orders}) {

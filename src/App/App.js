@@ -8,6 +8,7 @@ import { getUser } from '../services/actions/auth.js';
 import IngredientDetails from '../components/IngredientDetails/IngredientDetails';
 import Modal from '../components/modals/Modal/Modal';
 import {getIngredientsList, REMOVE_SELECTED_INGREDIENT} from '../services/actions/index.js'
+import OrderInfoPage from '../pages/orderInfo/OrderInfoPage';
 
 import { 
   ConstructorPage,
@@ -72,12 +73,12 @@ function App() {
               <IngredientDetailsPage />
             </Route>
 
-            <Route path='/feed'>
+            <Route exact path='/feed'>
               <FeedPage />
             </Route>
 
             <Route path='/feed/:id'>
-              
+              <OrderInfoPage/>
             </Route>
 
             <Route >

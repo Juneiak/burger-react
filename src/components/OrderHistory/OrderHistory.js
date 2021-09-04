@@ -1,4 +1,4 @@
-import OrderCardList from "../OrderCardList/OrderCardList";
+import OrderCardList from "../orderCardList/OrderCardList";
 
 function OrderHistory() {
   const fetch = {
