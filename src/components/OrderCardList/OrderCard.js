@@ -3,18 +3,21 @@ import styles from './OrderCard.module.css';
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useSelector} from 'react-redux';
 import {Link, useRouteMatch} from 'react-router-dom';
-function OrderCard({orderData: {ingredients: selectedIngredientsIdList, number, status, createdAt}}) {
 
-  const createdTime =  new Date(Date.parse(createdAt)).toDateString()
-  const orderName = 'Black Hole Singularity острый бургер'
-  const ingredientsList = useSelector(store => store.index.ingredientsList)
+function OrderCard({statusBar, orderData: {ingredients: selectedIngredientsIdList, name: orderName, number, _id, status, createdAt}}) {
+  const [totalPrice, setTotalPrice] = React.useState()
   const {url} = useRouteMatch()
+  const ingredientsList = useSelector(store => store.index.ingredientsList)
+  const createdTime =  new Date(Date.parse(createdAt)).toDateString()
 
   const selectedIngredients = ingredientsList.filter((ingredient) => selectedIngredientsIdList.includes(ingredient._id))
   const ingredientsToShow = selectedIngredients
   let restIngredients = ingredientsToShow.splice(5,)
-  const orderTotalPrice = 1000;
-  const _id = 500
+  
+  React.useEffect(() => {
+    setTotalPrice(selectedIngredients.reduce((sum, ingredient) => (sum + ingredient.price), 0))
+    
+  }, [selectedIngredients])
 
   return (
     <Link to={`${url}/${_id}`} className={styles.commonLink}>
@@ -26,7 +29,11 @@ function OrderCard({orderData: {ingredients: selectedIngredientsIdList, number, 
         </div>
           <div className={styles.title}>
             <h3 className='text text_type_main-medium mb-2'>{orderName}</h3>
-            <p className='text text_type_main-default'>{status}</p>
+            {statusBar && 
+            <p 
+              style={{color: status==='done' ? '#fff' : '#00CCCC'}}
+              className='text text_type_main-default'>{status==='done' ? 'Выполнен' : 'Готовится'}
+            </p>}
           </div>
           
         <div className={styles.list}>
@@ -47,7 +54,7 @@ function OrderCard({orderData: {ingredients: selectedIngredientsIdList, number, 
           </ul>
 
           <div className={styles.price}>
-            <p className={`${styles.total} text text_type_digits-default`}>{orderTotalPrice}</p>
+            <p className={`${styles.total} text text_type_digits-default`}>{totalPrice}</p>
             <CurrencyIcon type="primary" />
           </div>
 

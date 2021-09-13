@@ -1,7 +1,7 @@
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import Burger from './Burger';
-import { getOrderDetails } from '../../services/actions/index.js';
+import { getOrderDetails } from '../../services/actions/order.js';
 import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
 import {useHistory, useLocation} from "react-router-dom";

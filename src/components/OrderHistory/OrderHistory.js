@@ -1,33 +1,19 @@
 import OrderCardList from "../orderCardList/OrderCardList";
+import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import {WS_CONNECTION_START} from '../../services/actions/wsActions';
+import {getCookie} from '../../utils/cookieUtils';
 
 function OrderHistory() {
-  const fetch = {
-    "success": true,
-    "orders": [
-      {
-        "ingredients": [
-          "60d3b41abdacab0026a733c8",
-          "60d3b41abdacab0026a733cc",
-          "60d3b41abdacab0026a733d0",
-          "60d3b41abdacab0026a733c9",
-          "60d3b41abdacab0026a733ca",
-          "60d3b41abdacab0026a733cb",
-          "60d3b41abdacab0026a733d2",
-        ],
-        "_id": "",
-        "status": "done",
-        "number": 34535,
-        "createdAt": "2021-06-23T14:43:22.587Z",
-        "updatedAt": "2021-06-23T14:43:22.603Z"
-      },
-    ],
-    "total": 1,
-    "totalToday": 1
-  } 
+  const dispatch = useDispatch()
+  const aToken = getCookie('Atoken')
+  React.useEffect(() => {
+    dispatch({type: WS_CONNECTION_START, wsUrl: `wss://norma.nomoreparties.space/orders?token=${aToken}`})
+  }, [])
+  const {ordersInfo: {orders=[], total=null, totalToday=null}} = useSelector(store =>({ordersInfo: store.ws.ordersInfo}))
 
-  const {orders} = fetch
   return (
-    <OrderCardList orders={orders} />
+    orders.length > 0 && <OrderCardList orders={orders} statusBar={true} />
   )
 }
 

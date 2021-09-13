@@ -23,12 +23,14 @@
   overflow: auto;
   margin: 0 0 40px;
   width: 100%;
+  padding-right: 24px;
+  box-sizing: border-box;
 }
 
 .ingredientsList::-webkit-scrollbar {
   width: 8px;
   background-color: #2F2F37;
-  margin-left: 24px;
+  
 }
 
 .ingredientsList::-webkit-scrollbar-thumb {

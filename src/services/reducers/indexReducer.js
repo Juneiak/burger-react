@@ -2,10 +2,9 @@ import {
   SET_INGREDIENTS_LIST,
   SELECT_INGREDIENT,
   REMOVE_SELECTED_INGREDIENT,
-  SET_ORDER_DETAILS,
   ADD_INGREDIENT_INTO_CONSTRUCTOR,
   REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
-  CLEAR_ORDER_DETAILS,
+  CLEAR_CONSTRUCTOR,
   UPDATE_SELECTED_INGREDIENT,
   SET_INGREDIENTS_LIST_IS_LOADING,
   SET_INGREDIENTS_LIST_IS_ERROR
@@ -17,7 +16,6 @@ const inititialIngredientsState = {
   ingredientListIsError: false,
   selectedIngredient: {},
   constructorList: [],
-  orderDetails: {},
   selectedBun: {}
 }
 const indexReducer = (state=inititialIngredientsState, action) => {
@@ -83,18 +81,9 @@ const indexReducer = (state=inititialIngredientsState, action) => {
       }
     }
 
-    case SET_ORDER_DETAILS: {
-      console.log(action.orderDetails);
+    case CLEAR_CONSTRUCTOR: {
       return {
         ...state,
-        orderDetails: action.orderDetails
-      }
-    }
-
-    case CLEAR_ORDER_DETAILS: {
-      return {
-        ...state,
-        orderDetails: {},
         constructorList: [],
         selectedBun: {}
       }

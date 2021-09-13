@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 
 function OrderDetails() {
 
-  const orderDetails = useSelector(store => store.index.orderDetails)
+  const orderDetails = useSelector(store => store.order.orderDetails)
   
   return (
     <div className={OrderDetailsStyles.content}>

@@ -9,7 +9,7 @@ import IngredientDetails from '../components/IngredientDetails/IngredientDetails
 import Modal from '../components/modals/Modal/Modal';
 import {getIngredientsList, REMOVE_SELECTED_INGREDIENT} from '../services/actions/index.js'
 import OrderInfoPage from '../pages/orderInfo/OrderInfoPage';
-
+import OrderInfo from '../components/OrderInfo/OrderInfo';
 import { 
   ConstructorPage,
   LoginPage,
@@ -20,13 +20,16 @@ import {
   NotFound404Page,
   IngredientDetailsPage,
   FeedPage } from '../pages';
+import { REMOVE_SELECTED_ORDER } from '../services/actions/order';
 
 function App() {
 
   const dispatch = useDispatch()
   const location = useLocation()
   const history = useHistory()
+  
   const selectedIngredient = useSelector(store => store.index.selectedIngredient)
+  const selectedOrder = useSelector(store => store.order.selectedOrder)
 
   React.useEffect(() => {
     dispatch(getIngredientsList())
@@ -35,6 +38,11 @@ function App() {
 
   function handleCloseIngredientModal() {
     dispatch({type: REMOVE_SELECTED_INGREDIENT})
+    history.goBack()
+  }
+
+  function handleCloseOrderModal() {
+    dispatch({type: REMOVE_SELECTED_ORDER})
     history.goBack()
   }
 
@@ -69,6 +77,10 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
 
+            <ProtectedRoute path='/profile/orders/:id'>
+              <OrderInfoPage/>
+            </ProtectedRoute>
+
             <Route path='/ingredients/:id' >
               <IngredientDetailsPage />
             </Route>
@@ -85,12 +97,19 @@ function App() {
               <NotFound404Page />
             </Route>
           </Switch>
-
+          <Switch>
           { background && selectedIngredient?._id &&
             <Route path={`/ingredients/:id`} >
               <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseIngredientModal}><IngredientDetails /></Modal>
             </Route>
           }
+
+          { background && selectedOrder?._id &&
+            <Route path={`${background}/:id`} >
+              <Modal isOpen={selectedOrder ? true : false} onClose={handleCloseOrderModal}><OrderInfo/></Modal>
+            </Route>
+          }
+          </Switch>
           
       </div>
   );
