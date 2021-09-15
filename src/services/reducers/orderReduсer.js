@@ -12,7 +12,6 @@ const inititialOrdersState = {
   orderDetails: {},
   selectedOrder: {},
   ordersList: {},
-  userOrdersList: {},
   ordersListIsLoaded: false,
   ordersListIsError: false,
 }

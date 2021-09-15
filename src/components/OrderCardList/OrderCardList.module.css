@@ -8,12 +8,13 @@
   overflow: auto;
   margin: 0;
   width: 100%;
+  padding-right: 8px;
 }
 
 .list::-webkit-scrollbar {
   width: 8px;
   background-color: #2F2F37;
-  margin-left: 8px;
+  
 }
 
 .list::-webkit-scrollbar-thumb {

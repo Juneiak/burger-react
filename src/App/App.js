@@ -47,7 +47,7 @@ function App() {
   }
 
   const background = (history.action === "PUSH" || history.action === 'REPLACE') && location?.state?.background
-
+  
   return (
       <div className={AppStyles.app}>
         <AppHeader />
@@ -73,12 +73,12 @@ function App() {
               <ResetPage />
             </Route>
 
-            <ProtectedRoute path='/profile'>
-              <ProfilePage />
+            <ProtectedRoute exact path='/profile/orders/:id'>
+              <OrderInfoPage/>
             </ProtectedRoute>
 
-            <ProtectedRoute path='/profile/orders/:id'>
-              <OrderInfoPage/>
+            <ProtectedRoute path='/profile'>
+              <ProfilePage />
             </ProtectedRoute>
 
             <Route path='/ingredients/:id' >
@@ -89,7 +89,7 @@ function App() {
               <FeedPage />
             </Route>
 
-            <Route path='/feed/:id'>
+            <Route exact path='/feed/:id'>
               <OrderInfoPage/>
             </Route>
 
@@ -98,17 +98,19 @@ function App() {
             </Route>
           </Switch>
           <Switch>
+
+          { background && selectedOrder?._id &&
+            <Route path={`${background.pathname}/:id`} >
+              <Modal isOpen={selectedOrder ? true : false} onClose={handleCloseOrderModal}><OrderInfo /></Modal>
+            </Route>
+          }
+          
           { background && selectedIngredient?._id &&
             <Route path={`/ingredients/:id`} >
               <Modal isOpen={selectedIngredient ? true : false} onClose={handleCloseIngredientModal}><IngredientDetails /></Modal>
             </Route>
           }
 
-          { background && selectedOrder?._id &&
-            <Route path={`${background}/:id`} >
-              <Modal isOpen={selectedOrder ? true : false} onClose={handleCloseOrderModal}><OrderInfo/></Modal>
-            </Route>
-          }
           </Switch>
           
       </div>

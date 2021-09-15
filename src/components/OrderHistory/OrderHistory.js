@@ -10,10 +10,10 @@ function OrderHistory() {
   React.useEffect(() => {
     dispatch({type: WS_CONNECTION_START, wsUrl: `wss://norma.nomoreparties.space/orders?token=${aToken}`})
   }, [])
-  const {ordersInfo: {orders=[], total=null, totalToday=null}} = useSelector(store =>({ordersInfo: store.ws.ordersInfo}))
-
+  const {ordersInfo: {orders=[]}} = useSelector(store =>({ordersInfo: store.ws.ordersInfo}))
+  const reversedOrders = (Array.from(orders).reverse())
   return (
-    orders.length > 0 && <OrderCardList orders={orders} statusBar={true} />
+    orders.length > 0 && <OrderCardList orders={reversedOrders} statusBar={true} />
   )
 }
 

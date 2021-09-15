@@ -8,14 +8,10 @@
   border-radius: 40px;
   width: 100%;
   box-sizing: border-box;
-  
-}
-
-.commonLink {
-  color: #F2F2F3;
-  text-decoration: none;
   margin-bottom: 16px;
-  width: 100%;
+}
+.card:hover {
+  cursor: pointer;
 }
 
 .commonLink:last-child {

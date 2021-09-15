@@ -24,7 +24,7 @@ function FeedPage() {
     })
     setPendingOrders(pendingOrdersNumber)
     setDoneOrders(doneOrdersNumber)
-  }, [orders])
+  }, [])
 
   return (
     <main className={styles.main}>

@@ -6,11 +6,6 @@ import {getCookie} from '../../utils/cookieUtils.js'
 
 function AppHeader() {
 
-  // function onClick() {
-  //   console.log(getCookie('Atoken'));
-  //   console.log(localStorage.getItem('Rtoken'));
-  // }
-
   return (
     <header className={`${headerStyles.header} pb-4 pt-4`}>
       <nav className={headerStyles.menu}>

@@ -41,7 +41,6 @@ function Ingredient({ingredientData, id}) {
 
   function onIngredientClick() {
     dispatch({type: SELECT_INGREDIENT, id})
-    
     history.push(`/ingredients/${id}`, {background: location})
   }
 
