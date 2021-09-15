@@ -1,7 +1,7 @@
-import OrderCard from './OrderCard';
+import {OrderCard} from './OrderCard';
 import styles from './OrderCardList.module.css'
 
-function OrderCardList({orders, statusBar}) {
+export function OrderCardList({orders, statusBar}) {
 
   return (
     <ul className={styles.list}>
@@ -11,5 +11,3 @@ function OrderCardList({orders, statusBar}) {
     </ul>
   )
 }
-
-export default OrderCardList;

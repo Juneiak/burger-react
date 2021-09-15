@@ -1,10 +1,9 @@
 
-import {Logo, BurgerIcon, ListIcon, ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Logo, BurgerIcon, ProfileIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from "./AppHeader.module.css";
 import {NavLink} from 'react-router-dom';
-import {getCookie} from '../../utils/cookieUtils.js'
 
-function AppHeader() {
+export function AppHeader() {
 
   return (
     <header className={`${headerStyles.header} pb-4 pt-4`}>
@@ -38,5 +37,3 @@ function AppHeader() {
   )
   
 };
-
-export default AppHeader;

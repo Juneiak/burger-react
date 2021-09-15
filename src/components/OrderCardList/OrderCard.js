@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useRouteMatch, useHistory, useLocation} from 'react-router-dom';
 import {SELECT_ORDER} from '../../services/actions/order';
 
-function OrderCard({statusBar, orderData: {ingredients, name, number, _id, status, createdAt}}) {
+export function OrderCard({statusBar, orderData: {ingredients, name, number, _id, status, createdAt}}) {
   const [totalPrice, setTotalPrice] = React.useState()
   const [selectedIngredients, setSelectedIngredients] = React.useState([])
   const [createdTime, setCreatedTime] = React.useState('')
@@ -85,5 +85,3 @@ function OrderCard({statusBar, orderData: {ingredients, name, number, _id, statu
     </article>
   )
 }
-
-export default OrderCard;

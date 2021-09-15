@@ -4,7 +4,7 @@ import {getUser} from '../../services/actions/auth.js';
 import {useDispatch, useSelector} from 'react-redux';
 
 
-function ProtectedRoute({children, ...restProps}) {
+export function ProtectedRoute({children, ...restProps}) {
 
   const [isLoaded, setIsLoaded] = React.useState(false)
   const dispatch = useDispatch()
@@ -35,5 +35,3 @@ function ProtectedRoute({children, ...restProps}) {
       />
   )
 }
-
-export default ProtectedRoute;

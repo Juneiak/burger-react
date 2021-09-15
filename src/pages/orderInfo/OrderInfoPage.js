@@ -1,4 +1,4 @@
-import OrderInfo from '../../components/OrderInfo/OrderInfo';
+import {OrderInfo} from '../../components/OrderInfo/OrderInfo';
 import styles from './OrderInfoPage.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {SELECT_ORDER} from '../../services/actions/order';
@@ -7,7 +7,7 @@ import {useParams, useRouteMatch} from 'react-router-dom';
 import {getCookie} from '../../utils/cookieUtils'
 import React from 'react';
 
-function OrderInfoPage() {
+export function OrderInfoPage() {
   const dispatch = useDispatch()
   const match = useRouteMatch('/feed/:id')
 
@@ -41,5 +41,3 @@ function OrderInfoPage() {
     </main>
   )
 }
-
-export default OrderInfoPage;

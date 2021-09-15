@@ -1,15 +1,15 @@
 import React from 'react';
 import { Switch, Route, useLocation, useHistory} from 'react-router-dom';
 import AppStyles from './App.module.css';
-import AppHeader from '../components/AppHeader/AppHeader';
-import ProtectedRoute from "../components/hocs/ProtectedRoute.js";
+import {AppHeader} from '../components/AppHeader/AppHeader';
+import {ProtectedRoute} from "../components/hocs/ProtectedRoute.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../services/actions/auth.js';
-import IngredientDetails from '../components/IngredientDetails/IngredientDetails';
-import Modal from '../components/modals/Modal/Modal';
+import {IngredientDetails }from '../components/IngredientDetails/IngredientDetails';
+import {Modal} from '../components/modals/Modal/Modal';
 import {getIngredientsList, REMOVE_SELECTED_INGREDIENT} from '../services/actions/index.js'
-import OrderInfoPage from '../pages/orderInfo/OrderInfoPage';
-import OrderInfo from '../components/OrderInfo/OrderInfo';
+import {OrderInfoPage} from '../pages/orderInfo/OrderInfoPage';
+import {OrderInfo} from '../components/OrderInfo/OrderInfo';
 import { 
   ConstructorPage,
   LoginPage,
@@ -22,7 +22,7 @@ import {
   FeedPage } from '../pages';
 import { REMOVE_SELECTED_ORDER } from '../services/actions/order';
 
-function App() {
+export function App() {
 
   const dispatch = useDispatch()
   const location = useLocation()
@@ -116,5 +116,3 @@ function App() {
       </div>
   );
 }
-
-export default App;

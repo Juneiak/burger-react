@@ -1,11 +1,12 @@
-import React from 'react';
+
 import BurgerStyles from './Burger.module.css'
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDrop} from 'react-dnd';
 import {useDispatch, useSelector} from 'react-redux'
 import {ADD_INGREDIENT_INTO_CONSTRUCTOR} from '../../services/actions/index.js';
-import Filling from './Filling';
-function Burger() {
+import {Filling} from './Filling';
+
+export function Burger() {
 
   const dispatch = useDispatch()
   const {constructorList, selectedBun} = useSelector(store => ({
@@ -79,5 +80,3 @@ function Burger() {
     </div>
   )
 }
-
-export default Burger;

@@ -7,7 +7,7 @@ import React from "react";
 import {useHistory, useLocation} from 'react-router-dom';
 import propTypes from 'prop-types';
 
-function Ingredient({ingredientData, id}) {
+export function Ingredient({ingredientData, id}) {
   const [count, setCount] = React.useState(0)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -83,4 +83,3 @@ Ingredient.propTypes = {
   }).isRequired,
   id: propTypes.string.isRequired
 }
-export default Ingredient;

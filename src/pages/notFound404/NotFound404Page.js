@@ -1,7 +1,7 @@
 
 import styles from './NotFound404Page.module.css';
 
-function NotFound404Page () {
+export function NotFound404Page () {
 
   return (
     <main className={styles.main}>
@@ -9,5 +9,3 @@ function NotFound404Page () {
     </main>
   )
 }
-
-export default NotFound404Page;

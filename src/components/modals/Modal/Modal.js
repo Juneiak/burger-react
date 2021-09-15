@@ -1,10 +1,10 @@
 import React from "react";
 import ModalStyles from './Modal.module.css'
-import ModalOverlay from "../ModalOverlay/ModalOverlay";
+import {ModalOverlay} from "../ModalOverlay/ModalOverlay";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import propTypes from 'prop-types';
 
-function Modal(props) {
+export function Modal(props) {
 
   React.useEffect(() => {
     function closeByEsc(evt) {
@@ -36,5 +36,3 @@ Modal.propTypes = {
   isOpen: propTypes.bool.isRequired,
   children: propTypes.node.isRequired
 }
-
-export default Modal;

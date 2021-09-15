@@ -1,12 +1,12 @@
-import AboutProfile from "../../components/AboutProfile/AboutProfile.js";
+import {AboutProfile} from "../../components/AboutProfile/AboutProfile.js";
 import ProfilePageStyles from './ProfilePage.module.css';
 import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {logout} from '../../services/actions/auth.js';
 import {useHistory} from "react-router-dom";
-import OrderHistory from "../../components/OrderHistory/OrderHistory.js";
+import {OrderHistory} from "../../components/OrderHistory/OrderHistory.js";
 
-function ProfilePage() {
+export function ProfilePage() {
 
   const {url, path} = useRouteMatch()
   const dispatch = useDispatch()
@@ -48,5 +48,3 @@ function ProfilePage() {
     </main>
   )
 }
-
-export default ProfilePage;

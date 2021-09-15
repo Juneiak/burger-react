@@ -3,7 +3,7 @@ import OrderDetailsStyles from './OrderDetails.module.css';
 import doneImage from '../../images/done.png';
 import {useSelector} from 'react-redux';
 
-function OrderDetails() {
+export function OrderDetails() {
 
   const orderDetails = useSelector(store => store.order.orderDetails)
   
@@ -17,5 +17,3 @@ function OrderDetails() {
     </div>
   )
 }
-
-export default OrderDetails;

@@ -1,10 +1,11 @@
 import React from "react";
 import burgerIngredientsSyles from "./BurgerIngredients.module.css";
-import Ingredient from "./Ingredient";
+import {Ingredient} from "./Ingredient";
 import {useSelector} from "react-redux";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import propType from "prop-types"
-function BurgerIngredients({onIngredientClick}) {
+
+export function BurgerIngredients({onIngredientClick}) {
 
   const data = useSelector(store => store.index.ingredientsList)
 
@@ -89,6 +90,3 @@ function BurgerIngredients({onIngredientClick}) {
 BurgerIngredients.propType  = {
   onIngredientClick: propType.func.isRequired
 }
-
-
-export default BurgerIngredients;

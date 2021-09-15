@@ -4,7 +4,7 @@ import AboutProfileStyles from './AboutProfile.module.css';
 import {changeProfileData} from '../../services/actions/auth.js';
 import {useSelector, useDispatch} from 'react-redux';
 
-function AboutProfile() {
+export function AboutProfile() {
 
   const [nameValue, setNameValue] = React.useState('')
   const [emailValue, setEmailValue] = React.useState('')
@@ -93,4 +93,3 @@ function AboutProfile() {
   )
 }
 
-export default AboutProfile;

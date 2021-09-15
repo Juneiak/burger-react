@@ -5,7 +5,7 @@ import {Link, Redirect, useLocation} from 'react-router-dom';
 import {login} from '../../services/actions/auth.js';
 import {useDispatch, useSelector} from 'react-redux';
 
-function LoginPage() {
+export function LoginPage() {
   
   const [emailValue, setEmailValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
@@ -71,5 +71,3 @@ function LoginPage() {
     </main>
   )
 }
-
-export default LoginPage;

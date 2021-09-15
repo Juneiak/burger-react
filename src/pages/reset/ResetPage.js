@@ -4,7 +4,8 @@ import ResetPageStyles from './ResetPage.module.css';
 import {Link, Redirect, useLocation} from 'react-router-dom';
 import {resetPassword} from '../../utils/api.js';
 import {useSelector} from "react-redux";
-function ResetPage() {
+
+export function ResetPage() {
   
   const [newPasswordValue, setNewPasswordValue] = React.useState('')
   const [codeValue, setCodeValue] = React.useState('')
@@ -75,5 +76,3 @@ function ResetPage() {
     </main>
   )
 }
-
-export default ResetPage;

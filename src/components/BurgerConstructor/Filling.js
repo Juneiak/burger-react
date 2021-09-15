@@ -5,7 +5,7 @@ import {REMOVE_INGREDIENT_FROM_CONSTRUCTOR, UPDATE_SELECTED_INGREDIENT} from '..
 import {useDrag, useDrop} from "react-dnd";
 import propTypes from 'prop-types';
 
-function Filling({item, index}) {
+export function Filling({item, index}) {
 
   const dispatch = useDispatch()
 
@@ -74,5 +74,3 @@ Filling.propTypes = {
   }).isRequired,
   index: propTypes.number.isRequired
 }
-
-export default Filling;

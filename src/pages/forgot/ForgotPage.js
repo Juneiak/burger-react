@@ -5,7 +5,7 @@ import {Link, Redirect, useHistory} from 'react-router-dom';
 import {sendCode} from '../../utils/api.js';
 import {useSelector} from "react-redux";
 
-function ForgotPage() {
+export function ForgotPage() {
   
   const [emailRestoreValue, setEmailRestoreValue] = React.useState('')
   const user = useSelector(store => store.auth.user)
@@ -52,5 +52,3 @@ function ForgotPage() {
     </main>
   )
 }
-
-export default ForgotPage;

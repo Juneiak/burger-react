@@ -1,10 +1,10 @@
-import OrderCardList from "../orderCardList/OrderCardList";
+import {OrderCardList} from "../orderCardList/OrderCardList";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import {WS_CONNECTION_START} from '../../services/actions/wsActions';
 import {getCookie} from '../../utils/cookieUtils';
 
-function OrderHistory() {
+export function OrderHistory() {
   const dispatch = useDispatch()
   const aToken = getCookie('Atoken')
   React.useEffect(() => {
@@ -16,5 +16,3 @@ function OrderHistory() {
     orders.length > 0 && <OrderCardList orders={reversedOrders} statusBar={true} />
   )
 }
-
-export default OrderHistory;

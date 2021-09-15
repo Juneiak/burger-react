@@ -1,10 +1,10 @@
-import OrderCardList from '../../components/orderCardList/OrderCardList';
+import {OrderCardList} from '../../components/orderCardList/OrderCardList';
 import styles from './FeedPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {WS_CONNECTION_START} from '../../services/actions/wsActions'
 import React from 'react';
 
-function FeedPage() {
+export function FeedPage() {
   const dispatch = useDispatch()
   const [pendingOrders, setPendingOrders] = React.useState([])
   const [doneOrders, setDoneOrders] = React.useState([])
@@ -71,5 +71,3 @@ function FeedPage() {
     </main>
   )
 }
-
-export default FeedPage;

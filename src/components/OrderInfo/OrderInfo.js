@@ -3,7 +3,7 @@ import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useSelector} from 'react-redux'
 import React from 'react';
 
-function OrderInfo() {
+export function OrderInfo() {
   const [ingredientsToDisplay, setIngredientsToDisplay] = React.useState()
   const {selectedOrder: {totalPrice, selectedIngredients, name, number, _id, status, createdTime}} = useSelector(store => ({selectedOrder: store.order.selectedOrder}))
 
@@ -65,5 +65,3 @@ function OrderInfo() {
     </div>
   )
 }
-
-export default OrderInfo;
