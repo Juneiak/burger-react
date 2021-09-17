@@ -1,4 +1,4 @@
-import { checkResponse, apiUrl } from "../../utils/apiUtils";
+import { checkResponse, apiUrl } from "../../utils/api-utils";
 
 export const SET_INGREDIENTS_LIST = 'SET_INGREDIENTS_LIST';
 export const SET_INGREDIENTS_LIST_IS_LOADING = 'SET_INGREDIENTS_LIST_IS_LOADING';

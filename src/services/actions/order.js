@@ -1,6 +1,6 @@
 import { CLEAR_CONSTRUCTOR } from "./index";
-import { checkResponse, apiUrl } from "../../utils/apiUtils";
-import { getCookie } from "../../utils/cookieUtils";
+import { checkResponse, apiUrl } from "../../utils/api-utils";
+import { getCookie } from "../../utils/cookie-utils";
 
 export const SET_ORDERS_LIST = 'SET_ORDERS_LIST';
 export const SET_ORDERS_LIST_IS_LOADING = 'SET_ORDERS_IS_LOADING';

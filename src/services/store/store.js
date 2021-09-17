@@ -1,5 +1,5 @@
-import rootReducer from '../rootReducer';
-import socketMiddleware from '../middleware/socketMiddleware';
+import rootReducer from '../root-reducer';
+import socketMiddleware from '../middleware/socket-middleware';
 import thunk from 'redux-thunk';
 import {createStore, applyMiddleware, compose} from 'redux';
 

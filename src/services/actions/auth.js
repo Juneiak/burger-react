@@ -1,5 +1,5 @@
-import { apiAuthUrl, checkResponse} from "../../utils/apiUtils.js";
-import {setCookie, getCookie, deleteCookie} from '../../utils/cookieUtils.js';
+import { apiAuthUrl, checkResponse} from "../../utils/api-utils.js";
+import {setCookie, getCookie, deleteCookie} from '../../utils/cookie-utils.js';
 import { stripBearerToken } from "../../utils/utils.js";
 import { fetchWithRefresh } from '../../utils/api.js';
 

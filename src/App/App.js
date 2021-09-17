@@ -1,15 +1,15 @@
 import React from 'react';
 import { Switch, Route, useLocation, useHistory} from 'react-router-dom';
 import AppStyles from './App.module.css';
-import {AppHeader} from '../components/AppHeader/AppHeader';
-import {ProtectedRoute} from "../components/hocs/ProtectedRoute.js";
+import {AppHeader} from '../components/app-header/app-header';
+import {ProtectedRoute} from "../components/hocs/protected-route.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../services/actions/auth.js';
-import {IngredientDetails }from '../components/IngredientDetails/IngredientDetails';
-import {Modal} from '../components/modals/Modal/Modal';
+import {IngredientDetails }from '../components/ingredient-details/ingredient-details';
+import {Modal} from '../components/modals/modal/modal';
 import {getIngredientsList, REMOVE_SELECTED_INGREDIENT} from '../services/actions/index.js'
-import {OrderInfoPage} from '../pages/orderInfo/OrderInfoPage';
-import {OrderInfo} from '../components/OrderInfo/OrderInfo';
+import {OrderInfoPage} from '../pages/order-info/order-info-page';
+import {OrderInfo} from '../components/order-info/order-info';
 import { 
   ConstructorPage,
   LoginPage,
@@ -17,7 +17,7 @@ import {
   ForgotPage,
   ResetPage,
   ProfilePage,
-  NotFound404Page,
+  NotFound,
   IngredientDetailsPage,
   FeedPage } from '../pages';
 import { REMOVE_SELECTED_ORDER } from '../services/actions/order';
@@ -94,7 +94,7 @@ export function App() {
             </Route>
 
             <Route >
-              <NotFound404Page />
+              <NotFound />
             </Route>
           </Switch>
           <Switch>
