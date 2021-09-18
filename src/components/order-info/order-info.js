@@ -20,7 +20,8 @@ export function OrderInfo() {
     })
 
     setIngredientsToDisplay(allKindOfIngredients.map(ingredient => {
-      ingredient.amount = selectedIngredients.filter(element => element._id === ingredient._id).length
+      if (ingredient.type === 'bun') ingredient.amount = 2
+      else ingredient.amount = selectedIngredients.filter(element => element._id === ingredient._id).length
       return ingredient
     }))
     

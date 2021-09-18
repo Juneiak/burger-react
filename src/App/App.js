@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, useLocation, useHistory} from 'react-router-dom';
-import AppStyles from './App.module.css';
+import AppStyles from './app.module.css';
 import {AppHeader} from '../components/app-header/app-header';
 import {ProtectedRoute} from "../components/hocs/protected-route.js";
 import { useDispatch, useSelector } from 'react-redux';
