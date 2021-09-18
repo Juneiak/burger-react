@@ -24,7 +24,7 @@ const wsReducer = (state=initialState, action) => {
       return {
         ...state,
         wsConnected: true,
-        error: ' '
+        error: ''
       }
 
     case WS_GET_ORDERS: 
@@ -37,6 +37,7 @@ const wsReducer = (state=initialState, action) => {
     
     case WS_CONNECTION_CLOSED: 
       return {
+        ...state,
         wsConnected: false,
         error: ''
       }
