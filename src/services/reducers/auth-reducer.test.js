@@ -14,14 +14,14 @@ describe('authReducer', () => {
   it('should handle SET_USER', () => {
     expect(authReducer(initialUserState, {
       type: SET_USER,
-      data: {data: 'hiWorld'}
+      data: {data: 'testData'}
     })).toEqual({
-      user: {data: 'hiWorld'}
+      user: {data: 'testData'}
     })
   })
 
   it('should handle REMOVE_USER', () => {
-    expect(authReducer({user: {data: 'hiWorld'}}, {
+    expect(authReducer({user: {data: 'testData'}}, {
       type: REMOVE_USER
     }))
     .toEqual({

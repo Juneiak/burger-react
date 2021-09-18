@@ -69,7 +69,10 @@ describe('orderReducer', () => {
     })
 
     it('should handle REMOVE_SELECTED_ORDER', () => {
-      expect(orderReducer(inititialOrdersState, {
+      expect(orderReducer({
+        ...inititialOrdersState,
+        selectedOrder: {data: 'testData'}
+      }, {
         type: REMOVE_SELECTED_ORDER
       }))
       .toEqual({
@@ -90,7 +93,10 @@ describe('orderReducer', () => {
     })
 
     it('should handle CLEAR_ORDER_DETAILS', () => {
-      expect(orderReducer(inititialOrdersState, {
+      expect(orderReducer({
+        ...inititialOrdersState,
+        orderDetails: {data: 'testData'}
+      }, {
         type: CLEAR_ORDER_DETAILS
       }))
       .toEqual({
