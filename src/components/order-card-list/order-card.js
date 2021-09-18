@@ -23,7 +23,7 @@ export function OrderCard({statusBar, orderData: {ingredients, name, number, _id
 
   React.useEffect(() => {
     setTotalPrice(selectedIngredients.reduce((total, ingredient) => {
-      if (ingredient.type === 'bun') return total + ingredient.price*2
+      if (ingredient.type === 'bun') return total + ingredient.price * 2
       else return total + ingredient.price
     }, 0))
   }, [selectedIngredients])
