@@ -25,6 +25,7 @@ export type TOrder = {
   readonly number: number;
   readonly createdAt: string;
   readonly updatedAt: string;
+  readonly name: string;
 }
 
 export type TOrdersInfo = {

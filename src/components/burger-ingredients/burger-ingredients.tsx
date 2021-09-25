@@ -1,14 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerIngredientsSyles from './burger-ingredients.module.css';
 import { Ingredient } from './ingredient';
 import { useSelector } from '../../services/hooks';
 import { TIngredient } from '../../services/types/data';
 
-interface TBurgerIngredientsProps {
-  onIngredientClick: () => void;
-}
-export const BurgerIngredients: FC<TBurgerIngredientsProps> = ({ onIngredientClick }) => {
+export const BurgerIngredients = () => {
   const data = useSelector((store) => store.index.ingredientsList);
 
   const [current, setCurrent] = React.useState('bun');
@@ -56,7 +53,7 @@ export const BurgerIngredients: FC<TBurgerIngredientsProps> = ({ onIngredientCli
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map((item: TIngredient) => (
               item.type === 'bun' && (
-                <Ingredient key={item._id} id={item._id} onClick={onIngredientClick} ingredientData={item} />
+                <Ingredient key={item._id} id={item._id} ingredientData={item} />
               )
             ))}
           </ul>
@@ -67,7 +64,7 @@ export const BurgerIngredients: FC<TBurgerIngredientsProps> = ({ onIngredientCli
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map((item: TIngredient) => (
               item.type === 'sauce' && (
-                <Ingredient key={item._id} id={item._id} onClick={onIngredientClick} ingredientData={item} />
+                <Ingredient key={item._id} id={item._id} ingredientData={item} />
               )
             ))}
           </ul>
@@ -78,7 +75,7 @@ export const BurgerIngredients: FC<TBurgerIngredientsProps> = ({ onIngredientCli
           <ul className={`${burgerIngredientsSyles.ingredientsMenu} mb-10`}>
             {data.map((item: TIngredient) => (
               item.type === 'main' && (
-                <Ingredient key={item._id} id={item._id} onClick={onIngredientClick} ingredientData={item} />
+                <Ingredient key={item._id} id={item._id} ingredientData={item} />
               )
             ))}
           </ul>

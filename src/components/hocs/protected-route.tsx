@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { getUser } from '../../services/actions/auth.js';
 import { useDispatch, useSelector } from '../../services/hooks';
 
-export const ProtectedRoute: FC = ({ children, ...restProps }) => {
+export const ProtectedRoute: FC<any> = ({ children, ...restProps }) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.auth.user);

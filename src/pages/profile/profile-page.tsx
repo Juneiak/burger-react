@@ -1,20 +1,25 @@
-import {AboutProfile} from "../../components/about-profile/about-profile.tsx/index.js.js.js.js.js";
+import React from 'react';
+import {
+  NavLink,
+  Route,
+  Switch,
+  useRouteMatch,
+  useHistory,
+} from 'react-router-dom';
+import { AboutProfile } from '../../components/about-profile/about-profile';
 import ProfilePageStyles from './profile-page.module.css';
-import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
-import {useDispatch} from '../../services/hooks';
-import {logout} from '../../services/actions/auth.js';
-import {useHistory} from "react-router-dom";
-import {OrderHistory} from "../../components/order-history/order-history.js";
+import { useDispatch } from '../../services/hooks';
+import { logout } from '../../services/actions/auth.js';
+import { OrderHistory } from '../../components/order-history/order-history.js';
 
 export function ProfilePage() {
+  const { url, path } = useRouteMatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const {url, path} = useRouteMatch()
-  const dispatch = useDispatch()
-  const history = useHistory()
-
-  function onExitClick () {
-    dispatch(logout())
-    history.push('/')
+  function onExitClick() {
+    dispatch(logout());
+    history.push('/');
   }
 
   return (
@@ -28,11 +33,11 @@ export function ProfilePage() {
             <NavLink to={`${url}/orders`} activeClassName={ProfilePageStyles.activeLink} className={`${ProfilePageStyles.link} text text_type_main-medium text_color_inactive`}>История заказов</NavLink>
           </li>
           <li>
-            <button onClick={onExitClick}  className={`${ProfilePageStyles.exictButton} text text_type_main-medium text_color_inactive`}>Выход</button>
+            <button onClick={onExitClick} className={`${ProfilePageStyles.exictButton} text text_type_main-medium text_color_inactive`}>Выход</button>
           </li>
         </ul>
 
-        <p className='text text_type_main-default text_color_inactive'>В этом разделе вы можете изменить свои персональные данные</p>
+        <p className="text text_type_main-default text_color_inactive">В этом разделе вы можете изменить свои персональные данные</p>
       </nav>
       <section className={ProfilePageStyles.routeSide}>
         <Switch>
@@ -46,5 +51,5 @@ export function ProfilePage() {
       </section>
 
     </main>
-  )
+  );
 }

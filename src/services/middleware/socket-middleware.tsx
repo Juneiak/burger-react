@@ -7,9 +7,9 @@ import {
 
 import { WS_CONNECTION_START, WS_SEND } from '../constants/index';
 
-const socketMiddleware = () => (store) => {
-  let socket = null;
-  return (next) => (action) => {
+const socketMiddleware = () => (store: any) => {
+  let socket: any = null;
+  return (next: any) => (action: any) => {
     const { dispatch } = store; // here is a getState
     const { type, payload } = action;
 
@@ -17,19 +17,19 @@ const socketMiddleware = () => (store) => {
       socket = new WebSocket(action.wsUrl);
     }
     if (socket) {
-      socket.onopen = (event) => {
+      socket.onopen = (event: any) => {
         dispatch(wsConnectionSuccess(event));
       };
 
-      socket.onerror = (event) => {
+      socket.onerror = (event: any) => {
         dispatch(wsConnectionError(event));
       };
 
-      socket.onclose = (event) => {
+      socket.onclose = (event: any) => {
         dispatch(wsConnectionClosed(event));
       };
 
-      socket.onmessage = (event) => {
+      socket.onmessage = (event: any) => {
         const { data } = event;
         const parsedData = JSON.parse(data);
         dispatch(wsGetOrders(parsedData));
