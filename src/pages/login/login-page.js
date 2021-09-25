@@ -3,7 +3,7 @@ import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components"
 import LoginPageStyles from './login-page.module.css';
 import {Link, Redirect, useLocation} from 'react-router-dom';
 import {login} from '../../services/actions/auth.js';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from '../../services/hooks';
 
 export function LoginPage() {
   

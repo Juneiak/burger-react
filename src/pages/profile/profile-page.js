@@ -1,7 +1,7 @@
-import {AboutProfile} from "../../components/about-profile/about-profile.js";
+import {AboutProfile} from "../../components/about-profile/about-profile.tsx/index.js.js.js.js.js";
 import ProfilePageStyles from './profile-page.module.css';
 import {NavLink, Route, Switch, useRouteMatch} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch} from '../../services/hooks';
 import {logout} from '../../services/actions/auth.js';
 import {useHistory} from "react-router-dom";
 import {OrderHistory} from "../../components/order-history/order-history.js";

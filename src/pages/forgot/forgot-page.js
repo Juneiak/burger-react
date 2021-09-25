@@ -3,7 +3,7 @@ import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components"
 import ForgotPageStyles from './forgot-page.module.css';
 import {Link, Redirect, useHistory} from 'react-router-dom';
 import {sendCode} from '../../utils/api.js';
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/hooks";
 
 export function ForgotPage() {
   

@@ -1,6 +1,6 @@
 import styles from './order-info.module.css';
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useSelector} from 'react-redux'
+import {useSelector} from '../../services/hooks'
 import React from 'react';
 
 export function OrderInfo() {

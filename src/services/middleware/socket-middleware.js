@@ -1,48 +1,48 @@
 import {
-  WS_CONNECTION_START,
-  WS_CONNECTION_ERROR,
-  WS_CONNECTION_SUCCESS,
-  WS_GET_ORDERS,
-  WS_CONNECTION_CLOSED,
-  WS_SEND
+  wsConnectionError,
+  wsConnectionSuccess,
+  wsGetOrders,
+  wsConnectionClosed,
 } from '../actions/ws-actions';
 
-const socketMiddleware = () => store => {
+import { WS_CONNECTION_START, WS_SEND } from '../constants/index';
+
+const socketMiddleware = () => (store) => {
   let socket = null;
-  return next => action => {
-    const {dispatch, getState} = store;
-    const {type, payload} = action;
+  return (next) => (action) => {
+    const { dispatch } = store; // here is a getState
+    const { type, payload } = action;
 
     if (type === WS_CONNECTION_START) {
       socket = new WebSocket(action.wsUrl);
     }
     if (socket) {
-      socket.onopen = event => {
-        dispatch({type: WS_CONNECTION_SUCCESS, payload: event})
-      }
+      socket.onopen = (event) => {
+        dispatch(wsConnectionSuccess(event));
+      };
 
-      socket.onerror = event => {
-        dispatch({type: WS_CONNECTION_ERROR, payload: event})
-      }
+      socket.onerror = (event) => {
+        dispatch(wsConnectionError(event));
+      };
 
-      socket.onclose = event => {
-        dispatch({type: WS_CONNECTION_CLOSED, payload: event})
-      }
+      socket.onclose = (event) => {
+        dispatch(wsConnectionClosed(event));
+      };
 
-      socket.onmessage = event => {
-        const {data} = event
-        const parsedData = JSON.parse(data)
-        dispatch({type: WS_GET_ORDERS, payload: parsedData})
-      }
+      socket.onmessage = (event) => {
+        const { data } = event;
+        const parsedData = JSON.parse(data);
+        dispatch(wsGetOrders(parsedData));
+      };
 
       if (type === WS_SEND) {
-        const message = payload
-        socket.send(JSON.stringify(message))
+        const message = payload;
+        socket.send(JSON.stringify(message));
       }
     }
 
     next(action);
-  }
-}
+  };
+};
 
 export default socketMiddleware;

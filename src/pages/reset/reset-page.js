@@ -3,7 +3,7 @@ import {Input, Button} from "@ya.praktikum/react-developer-burger-ui-components"
 import ResetPageStyles from './reset-page.module.css';
 import {Link, Redirect, useLocation} from 'react-router-dom';
 import {resetPassword} from '../../utils/api.js';
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/hooks";
 
 export function ResetPage() {
   

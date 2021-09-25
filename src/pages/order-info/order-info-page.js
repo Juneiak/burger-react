@@ -1,7 +1,7 @@
-import {OrderInfo} from '../../components/order-info/order-info';
+import { OrderInfo } from '../../components/order-info/order-info';
 import styles from './order-info-page.module.css';
-import {useSelector, useDispatch} from 'react-redux';
-import {SELECT_ORDER} from '../../services/actions/order';
+import { useSelector, useDispatch } from '../../services/hooks';
+import { selectOrder } from '../../services/actions/order';
 import {WS_CONNECTION_START} from  '../../services/actions/ws-actions';
 import {useParams, useRouteMatch} from 'react-router-dom';
 import {getCookie} from '../../utils/cookie-utils'
@@ -32,7 +32,7 @@ export function OrderInfoPage() {
     const createdTime =  new Date(Date.parse(createdAt)).toDateString()
     const selectedIngredients = ingredientsList.filter((ingredient) => ingredients.includes(ingredient._id))
     const totalPrice = selectedIngredients.reduce((sum, ingredient) => (sum + ingredient.price), 0)
-    dispatch({type: SELECT_ORDER, data: {totalPrice, selectedIngredients, name, number, _id, status, createdTime}})
+    dispatch(selectOrder({totalPrice, selectedIngredients, name, number, _id, status, createdTime, }))
   }
 
   return (

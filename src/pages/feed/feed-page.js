@@ -1,7 +1,7 @@
 import {OrderCardList} from '../../components/order-card-list/order-card-list';
 import styles from './feed-page.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import {WS_CONNECTION_START} from '../../services/actions/ws-actions'
+import { useDispatch, useSelector } from '../../services/hooks';
+import {wsConnectionStart} from '../../services/actions/ws-actions'
 import React from 'react';
 
 export function FeedPage() {
@@ -10,7 +10,7 @@ export function FeedPage() {
   const [doneOrders, setDoneOrders] = React.useState([])
 
   React.useEffect(() => {
-    dispatch({type: WS_CONNECTION_START, wsUrl: 'wss://norma.nomoreparties.space/orders/all'})
+    dispatch(wsConnectionStart('wss://norma.nomoreparties.space/orders/all'))
   }, [])
 
   const {ordersInfo: {orders=[], total=null, totalToday=null}} = useSelector(store =>({ordersInfo: store.ws.ordersInfo}))

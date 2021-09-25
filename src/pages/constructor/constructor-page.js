@@ -4,8 +4,8 @@ import {BurgerIngredients}from '../../components/burger-ingredients/burger-ingre
 import {BurgerConstructor} from '../../components/burger-constructor/burger-constructor';
 import {OrderDetails} from '../../components/order-details/order-details';
 import {Modal} from '../../components/modals/modal/modal';
-import {REMOVE_SELECTED_INGREDIENT} from '../../services/actions/index.js';
-import { useDispatch, useSelector } from 'react-redux';
+import {removeSelectedIngredient} from '../../services/actions/index.js';
+import { useDispatch, useSelector } from '../../services/hooks';
 import {clearOrder} from '../../services/actions/order';
 
 export function ConstructorPage() {
@@ -14,7 +14,7 @@ export function ConstructorPage() {
   const orderDetails = useSelector(store => store.order.orderDetails)
 
   React.useEffect(() => {
-    dispatch({type: REMOVE_SELECTED_INGREDIENT})
+    dispatch(removeSelectedIngredient())
   }, [])
 
 

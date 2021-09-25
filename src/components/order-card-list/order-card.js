@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './order-card.module.css';
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from '../../services/hooks';
 import {useRouteMatch, useHistory, useLocation} from 'react-router-dom';
-import {SELECT_ORDER} from '../../services/actions/order';
+import { selectOrder } from '../../services/actions/order';
 
 export function OrderCard({statusBar, orderData: {ingredients, name, number, _id, status, createdAt}}) {
   const [totalPrice, setTotalPrice] = React.useState()
@@ -42,9 +42,9 @@ export function OrderCard({statusBar, orderData: {ingredients, name, number, _id
   const dispatch = useDispatch();
 
   const onCardClick = () => {
-    dispatch({type: SELECT_ORDER, data: {totalPrice, selectedIngredients, name, number, _id, status, createdTime}})
+    dispatch(selectOrder({totalPrice, selectedIngredients, name, number, _id, status, createdTime }));
     history.push(`${url}/${_id}`, {background: location})
-  }
+  };
 
   return (
     <article onClick={onCardClick} className={`${styles.card}`}>

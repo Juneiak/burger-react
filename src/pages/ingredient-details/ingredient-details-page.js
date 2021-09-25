@@ -1,9 +1,9 @@
 import React from "react";
 import {IngredientDetails} from "../../components/ingredient-details/ingredient-details.js";
 import styles from './ingredient-details-page.module.css';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from '../../services/hooks';
 import {useParams} from 'react-router-dom';
-import {SELECT_INGREDIENT} from '../../services/actions/index.js';
+import {selectIngredient} from '../../services/actions/index.js';
 import {useHistory} from 'react-router-dom';
 
 export function IngredientDetailsPage () {
@@ -19,7 +19,7 @@ export function IngredientDetailsPage () {
   
 
   React.useEffect(() => {
-    if (ingredientsList.length > 0) dispatch({type: SELECT_INGREDIENT, id})
+    if (ingredientsList.length > 0) dispatch(selectIngredient(id))
   }, [ingredientsList])
 
   if (!listIsLoaded) return null
