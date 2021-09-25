@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Redirect } from 'react-router-dom';
 import RegisterPageStyles from './register-page.module.css';
-import { register } from '../../services/actions/auth.js';
+import { register } from '../../services/actions/auth';
 import { useDispatch, useSelector } from '../../services/hooks';
 
 export function RegisterPage() {

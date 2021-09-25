@@ -1,6 +1,6 @@
 import { Route, Redirect } from 'react-router-dom';
 import React, { FC } from 'react';
-import { getUser } from '../../services/actions/auth.js';
+import { getUser } from '../../services/actions/auth';
 import { useDispatch, useSelector } from '../../services/hooks';
 
 export const ProtectedRoute: FC<any> = ({ children, ...restProps }) => {

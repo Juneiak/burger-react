@@ -10,21 +10,21 @@ import {
 } from '../constants';
 
 export interface ISelectOrder {
-  readonly type: typeof SELECT_ORDER;
-  readonly data: any;
+  type: typeof SELECT_ORDER;
+  data: any;
 }
 
 export interface IRemoveSelectedOrder {
-  readonly type: typeof REMOVE_SELECTED_ORDER;
+  type: typeof REMOVE_SELECTED_ORDER;
 }
 
 export interface ISetOrdersDetails {
-  readonly type: typeof SET_ORDER_DETAILS;
-  readonly orderDetails: any;
+  type: typeof SET_ORDER_DETAILS;
+  orderDetails: any;
 }
 
 export interface IClearOrderDetails {
-  readonly type: typeof CLEAR_ORDER_DETAILS;
+  type: typeof CLEAR_ORDER_DETAILS;
 }
 
 export type TOrderActions =

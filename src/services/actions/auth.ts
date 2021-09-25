@@ -6,12 +6,12 @@ import { SET_USER, REMOVE_USER } from '../constants/index';
 import { AppThunk, AppDispatch } from '../types/index';
 
 export interface ISetUser {
-  readonly type: typeof SET_USER;
-  readonly data: any;
+  type: typeof SET_USER;
+  data: any;
 }
 
 export interface IRemoveUser {
-  readonly type: typeof REMOVE_USER;
+  type: typeof REMOVE_USER;
 }
 
 export type TAuthActions =

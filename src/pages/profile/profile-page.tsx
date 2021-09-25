@@ -9,8 +9,8 @@ import {
 import { AboutProfile } from '../../components/about-profile/about-profile';
 import ProfilePageStyles from './profile-page.module.css';
 import { useDispatch } from '../../services/hooks';
-import { logout } from '../../services/actions/auth.js';
-import { OrderHistory } from '../../components/order-history/order-history.js';
+import { logout } from '../../services/actions/auth';
+import { OrderHistory } from '../../components/order-history/order-history';
 
 export function ProfilePage() {
   const { url, path } = useRouteMatch();

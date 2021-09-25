@@ -1,6 +1,6 @@
-import { apiAuthUrl, apiUrl, checkResponse } from "./api-utils.js";
-import {setCookie, getCookie} from './cookie-utils.js';
-import { stripBearerToken } from "./utils.js";
+import { apiAuthUrl, apiUrl, checkResponse } from "./api-utils";
+import {setCookie, getCookie} from './cookie-utils';
+import { stripBearerToken } from "./utils";
 
 export const resetPassword = (resetData) => {
   return fetch(`${apiUrl}/password-reset/reset`, {

@@ -8,32 +8,32 @@ import {
 } from '../constants';
 
 export interface IWsConnectionStart {
-  readonly type: typeof WS_CONNECTION_START;
-  readonly wsUrl: string;
+  type: typeof WS_CONNECTION_START;
+  wsUrl: string;
 }
 
 export interface IWsConnectionError {
-  readonly type: typeof WS_CONNECTION_ERROR;
-  readonly payload?: any;
+  type: typeof WS_CONNECTION_ERROR;
+  payload?: any;
 }
 
 export interface IWsConnectionSuccess {
-  readonly type: typeof WS_CONNECTION_SUCCESS;
-  readonly payload?: any;
+  type: typeof WS_CONNECTION_SUCCESS;
+  payload?: any;
 }
 
 export interface IWsGetOrders {
-  readonly type: typeof WS_GET_ORDERS;
-  readonly payload: any;
+  type: typeof WS_GET_ORDERS;
+  payload: any;
 }
 
 export interface IWsConnectionClosed {
-  readonly type: typeof WS_CONNECTION_CLOSED;
-  readonly payload?: any;
+  type: typeof WS_CONNECTION_CLOSED;
+  payload?: any;
 }
 
 export interface IWsSend {
-  readonly type: typeof WS_SEND;
+  type: typeof WS_SEND;
 }
 
 export type TWsActions =

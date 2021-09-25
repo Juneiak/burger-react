@@ -10,7 +10,7 @@ import AppStyles from './app.module.css';
 import { AppHeader } from '../components/app-header/app-header';
 import { ProtectedRoute } from '../components/hocs/protected-route';
 import { useDispatch, useSelector } from '../services/hooks';
-import { getUser } from '../services/actions/auth.js';
+import { getUser } from '../services/actions/auth';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
 import { Modal } from '../components/modals/modal/modal';
 import { getIngredientsList, removeSelectedIngredient } from '../services/actions/index';
@@ -36,8 +36,8 @@ export const App = () => {
   const location = useLocation<ICustomLocation>();
   const history = useHistory();
 
-  const selectedIngredient = useSelector((store) => store.index.selectedIngredient);
-  const selectedOrder = useSelector((store) => store.order.selectedOrder);
+  const selectedIngredient: any = useSelector((store) => store.index.selectedIngredient);
+  const selectedOrder: any = useSelector((store) => store.order.selectedOrder);
 
   React.useEffect(() => {
     dispatch(getIngredientsList());

@@ -3,7 +3,7 @@ import { TAuthActions } from '../actions/auth.js';
 import { TUser } from '../types/data/index';
 
 type TInitialUserState = {
-  readonly user: TUser | {};
+  user: TUser | {};
 }
 
 const initialUserState: TInitialUserState = {

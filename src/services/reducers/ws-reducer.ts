@@ -8,9 +8,9 @@ import { TWsActions } from '../actions/ws-actions';
 import { TOrdersInfo } from '../types/data/index';
 
 type TInitialState = {
-  readonly wsConnected: boolean;
-  readonly ordersInfo: TOrdersInfo | {};
-  readonly error: string;
+  wsConnected: boolean;
+  ordersInfo: TOrdersInfo | {};
+  error: string;
 }
 
 const initialState: TInitialState = {

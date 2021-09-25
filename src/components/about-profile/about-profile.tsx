@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import AboutProfileStyles from './about-profile.module.css';
-import { changeProfileData } from '../../services/actions/auth.js';
+import { changeProfileData } from '../../services/actions/auth';
 import { useSelector, useDispatch } from '../../services/hooks';
 
 export function AboutProfile() {

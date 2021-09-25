@@ -8,8 +8,8 @@ import { TOrderActions } from '../actions/order';
 import { TParsedOrder, TOrderDetails } from '../types/data/index';
 
 type TInitialOrdersState = {
-  readonly orderDetails: TOrderDetails | {};
-  readonly selectedOrder: TParsedOrder | {};
+  orderDetails: TOrderDetails | {};
+  selectedOrder: TParsedOrder | {};
 }
 
 const inititialOrdersState: TInitialOrdersState = {

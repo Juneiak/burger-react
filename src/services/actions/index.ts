@@ -13,46 +13,46 @@ import {
 } from '../constants/index';
 
 export interface ISetIngredientsList {
-  readonly type: typeof SET_INGREDIENTS_LIST;
-  readonly data: any;
+  type: typeof SET_INGREDIENTS_LIST;
+  data: any;
 }
 
 export interface ISetIngredientsListIsLoading {
-  readonly type: typeof SET_INGREDIENTS_LIST_IS_LOADING;
+  type: typeof SET_INGREDIENTS_LIST_IS_LOADING;
 }
 
 export interface ISetIngredientsListIsError {
-  readonly type: typeof SET_INGREDIENTS_LIST_IS_ERROR;
+  type: typeof SET_INGREDIENTS_LIST_IS_ERROR;
 }
 
 export interface ISelectIngredient {
-  readonly type: typeof SELECT_INGREDIENT;
-  readonly id: string;
+  type: typeof SELECT_INGREDIENT;
+  id: string;
 }
 
 export interface IRemoveSelectedIngredient {
-  readonly type: typeof REMOVE_SELECTED_INGREDIENT;
+  type: typeof REMOVE_SELECTED_INGREDIENT;
 }
 
 export interface IUpdateSelectedIngredient {
-  readonly type: typeof UPDATE_SELECTED_INGREDIENT;
-  readonly toRemoveIndex: number;
-  readonly toInsertIndex: number;
+  type: typeof UPDATE_SELECTED_INGREDIENT;
+  toRemoveIndex: number;
+  toInsertIndex: number;
 }
 
 export interface IAddIngredientIntoConstructor {
-  readonly type: typeof ADD_INGREDIENT_INTO_CONSTRUCTOR;
-  readonly id: string;
-  readonly ingredientType: string;
+  type: typeof ADD_INGREDIENT_INTO_CONSTRUCTOR;
+  id: string;
+  ingredientType: string;
 }
 
 export interface IRemoveIngredientFromConstructor {
-  readonly type: typeof REMOVE_INGREDIENT_FROM_CONSTRUCTOR;
-  readonly index: number;
+  type: typeof REMOVE_INGREDIENT_FROM_CONSTRUCTOR;
+  index: number;
 }
 
 export interface IClearConstructor {
-  readonly type: typeof CLEAR_CONSTRUCTOR;
+  type: typeof CLEAR_CONSTRUCTOR;
 }
 
 export type TIndexActions =

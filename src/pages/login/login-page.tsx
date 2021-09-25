@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 import LoginPageStyles from './login-page.module.css';
-import { login } from '../../services/actions/auth.js';
+import { login } from '../../services/actions/auth';
 import { useDispatch, useSelector } from '../../services/hooks';
 
 export function LoginPage() {

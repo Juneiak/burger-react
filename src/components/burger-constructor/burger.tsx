@@ -3,16 +3,14 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { useDrop } from 'react-dnd';
 import BurgerStyles from './burger.module.css';
 import { useDispatch, useSelector } from '../../services/hooks';
-import { addIngredientIntoConstructor } from '../../services/actions/index.js';
+import { addIngredientIntoConstructor } from '../../services/actions/index';
 import { Filling } from './filling';
 import { TIngredient } from '../../services/types/data';
 
 export function Burger() {
   const dispatch = useDispatch();
-  const { constructorList, selectedBun } = useSelector((store) => ({
-    constructorList: store.index.constructorList,
-    selectedBun: store.index.selectedBun,
-  }));
+  const selectedBun: any = useSelector((store) => store.index.selectedBun)
+  const constructorList: any = useSelector((store) => store.index.constructorList)
 
   const [{ isIngredientHover }, ingredientDropRef] = useDrop({
     accept: 'ingredient',

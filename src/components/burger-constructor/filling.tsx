@@ -3,7 +3,7 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import { useDrag, useDrop } from 'react-dnd';
 import FillingStyles from './filling.module.css';
 import { useDispatch } from '../../services/hooks';
-import { removeIngredientFromConstructor, updateSelectedIngredient } from '../../services/actions/index.js';
+import { removeIngredientFromConstructor, updateSelectedIngredient } from '../../services/actions/index';
 import { TIngredient } from '../../services/types/data/index';
 
 interface IFillingProps {

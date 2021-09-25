@@ -3,7 +3,7 @@ import { useDrag } from 'react-dnd';
 import React, { FC } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../services/hooks';
-import { selectIngredient } from '../../services/actions/index.js';
+import { selectIngredient } from '../../services/actions/index';
 import IngredientStyles from './ingredient.module.css';
 import { TIngredient } from '../../services/types/data/index';
 

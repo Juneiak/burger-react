@@ -17,8 +17,8 @@ type TInititialIngredientsState = {
   ingredientListIsLoaded: boolean,
   ingredientListIsError: boolean,
   selectedIngredient: TIngredient | undefined | {},
-  constructorList: Array<TIngredient | undefined>,
-  selectedBun: TIngredient | undefined | {},
+  constructorList: Array<TIngredient> | [],
+  selectedBun: TIngredient | {},
 };
 
 const inititialIngredientsState: TInititialIngredientsState = {
@@ -60,21 +60,16 @@ const indexReducer = (
 
     case ADD_INGREDIENT_INTO_CONSTRUCTOR: {
       if (action.ingredientType === 'bun') {
+        const selectedBun = state.ingredientsList.find((ingredient) => ingredient._id === action.id)
         return {
           ...state,
-          selectedBun: state
-            .ingredientsList
-            .find((ingredient) => ingredient._id === action.id),
+          selectedBun: selectedBun ? selectedBun : {},
         };
       }
-      return {
-        ...state,
-        constructorList: [
-          ...state.constructorList,
-          state
-            .ingredientsList
-            .find((ingredient) => ingredient._id === action.id)],
-      };
+      const newIngredient = state.ingredientsList.find((ingredient) => ingredient._id === action.id)
+      if (newIngredient) return {...state, constructorList: [...state.constructorList, newIngredient]
+      }
+      return state;
     }
 
     case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {

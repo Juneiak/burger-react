@@ -4,7 +4,7 @@ import { BurgerIngredients } from '../../components/burger-ingredients/burger-in
 import { BurgerConstructor } from '../../components/burger-constructor/burger-constructor';
 import { OrderDetails } from '../../components/order-details/order-details';
 import { Modal } from '../../components/modals/modal/modal';
-import { removeSelectedIngredient } from '../../services/actions/index.js';
+import { removeSelectedIngredient } from '../../services/actions/index';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { clearOrder } from '../../services/actions/order';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import BurgerConstructorStyles from './burger-constructor.module.css';
 import { Burger } from './burger';
-import { getOrderDetails } from '../../services/actions/order.js';
+import { getOrderDetails } from '../../services/actions/order';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { TIngredient } from '../../services/types/data/index';
 
@@ -12,15 +12,15 @@ export function BurgerConstructor() {
   const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { constructorList, selectedBun, user } = useSelector((store) => ({
-    constructorList: store.index.constructorList,
-    selectedBun: store.index.selectedBun,
-    user: store.auth.user,
-  }));
 
+  const user = useSelector((store) => store.auth.user);
+  const selectedBun: any = useSelector((store) => store.index.selectedBun);
+  const constructorList: any = useSelector((store) => store.index.constructorList);
+   
   React.useEffect(() => {
-    const bunPrice = selectedBun.price ? selectedBun.price * 2 : 0;
-    setTotal(constructorList.reduce((prevValue: number, item: TIngredient) => prevValue + item.price, bunPrice));
+      const bunPrice: number = selectedBun.price ? selectedBun.price * 2 : 0;
+      setTotal(constructorList.reduce((prevValue: number, item: TIngredient) => prevValue + item.price, bunPrice));
+    
   }, [constructorList, selectedBun]);
 
   function handleOrderClick() {

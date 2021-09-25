@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { IngredientDetails } from '../../components/ingredient-details/ingredient-details.js';
+import { IngredientDetails } from '../../components/ingredient-details/ingredient-details';
 import styles from './ingredient-details-page.module.css';
 import { useDispatch, useSelector } from '../../services/hooks';
-import { selectIngredient } from '../../services/actions/index.js';
+import { selectIngredient } from '../../services/actions/index';
 
 export function IngredientDetailsPage() {
   const { ingredientsList, ingredientListIsLoaded: listIsLoaded, ingredientListIsError: listIsError } = useSelector((store) => ({
