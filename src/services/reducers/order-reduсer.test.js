@@ -1,7 +1,4 @@
 import {
-  SET_ORDERS_LIST,
-  SET_ORDERS_LIST_IS_LOADING,
-  SET_ORDERS_LIST_IS_ERROR,
   SELECT_ORDER,
   REMOVE_SELECTED_ORDER,
   SET_ORDER_DETAILS,
@@ -11,49 +8,12 @@ import orderReducer from './order-reduсer';
 
 const inititialOrdersState = {
   orderDetails: {},
-  selectedOrder: {},
-  ordersList: {},
-  ordersListIsLoaded: false,
-  ordersListIsError: false,
+  selectedOrder: {}
 };
 
 describe('orderReducer', () => {
   it('should return initial state', () => {
     expect(orderReducer(undefined, {})).toEqual(inititialOrdersState);
-  });
-
-  it('should handle SET_ORDERS_LIST', () => {
-    expect(orderReducer(inititialOrdersState, {
-      type: SET_ORDERS_LIST,
-      data: { testData: 'testData' },
-    }))
-      .toEqual({
-        ...inititialOrdersState,
-        ordersListIsLoaded: true,
-        ordersListIsError: false,
-        ordersList: { testData: 'testData' },
-      });
-  });
-
-  it('should handle SET_ORDERS_LIST_IS_LOADING', () => {
-    expect(orderReducer(inititialOrdersState, {
-      type: SET_ORDERS_LIST_IS_LOADING,
-    }))
-      .toEqual({
-        ...inititialOrdersState,
-        ordersListIsLoaded: false,
-      });
-  });
-
-  it('should handle SET_ORDERS_LIST_IS_ERROR', () => {
-    expect(orderReducer(inititialOrdersState, {
-      type: SET_ORDERS_LIST_IS_ERROR,
-    }))
-      .toEqual({
-        ...inititialOrdersState,
-        ordersListIsLoaded: true,
-        ordersListIsError: true,
-      });
   });
 
   it('should handle SELECT_ORDER', () => {
