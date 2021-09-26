@@ -9,7 +9,7 @@ import { TParsedOrder, TOrderDetails } from '../types/data/index';
 
 type TInitialOrdersState = {
   orderDetails: TOrderDetails | {};
-  selectedOrder: TParsedOrder | {};
+  selectedOrder: TParsedOrder | { _id?: string };
 }
 
 const inititialOrdersState: TInitialOrdersState = {

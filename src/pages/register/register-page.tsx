@@ -30,7 +30,7 @@ export function RegisterPage() {
 
   return (
     <main className={RegisterPageStyles.main}>
-      <form className={`${RegisterPageStyles.form} mb-20`}>
+      <form onSubmit={onRegisterClick} className={`${RegisterPageStyles.form} mb-20`}>
         <h1 className="text text_type_main-medium mb-6">
           Регистрация
         </h1>
@@ -72,7 +72,7 @@ export function RegisterPage() {
           />
         </div>
 
-        <Button onClick={onRegisterClick} type="primary" size="medium">
+        <Button type="primary" size="medium">
           Зарегистрироваться
         </Button>
       </form>

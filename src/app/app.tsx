@@ -36,8 +36,10 @@ export const App = () => {
   const location = useLocation<ICustomLocation>();
   const history = useHistory();
 
-  const selectedIngredient: any = useSelector((store) => store.index.selectedIngredient);
-  const selectedOrder: any = useSelector((store) => store.order.selectedOrder);
+  const { selectedIngredient, selectedOrder } = useSelector((store) => ({
+    selectedIngredient: store.index.selectedIngredient,
+    selectedOrder: store.order.selectedOrder,
+  }));
 
   React.useEffect(() => {
     dispatch(getIngredientsList());

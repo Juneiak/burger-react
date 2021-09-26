@@ -30,7 +30,7 @@ export function LoginPage() {
 
   return (
     <main className={LoginPageStyles.main}>
-      <form className={`${LoginPageStyles.form} mb-20`}>
+      <form onSubmit={onEnterClick} className={`${LoginPageStyles.form} mb-20`}>
         <h1 className="text text_type_main-medium mb-6">
           Вход
         </h1>
@@ -60,7 +60,7 @@ export function LoginPage() {
           />
         </div>
 
-        <Button onClick={onEnterClick} type="primary" size="medium">
+        <Button type="primary" size="medium">
           Войти
         </Button>
       </form>

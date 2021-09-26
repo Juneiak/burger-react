@@ -5,8 +5,8 @@ import { TOrderActions } from '../actions/order';
 import { TIndexActions } from '../actions/index';
 import { TAuthActions } from '../actions/auth';
 import { TWsActions } from '../actions/ws-actions';
+import { store } from '../../index';
 
-const store = initStore();
 
 type TApplicationActions =
 | TOrderActions

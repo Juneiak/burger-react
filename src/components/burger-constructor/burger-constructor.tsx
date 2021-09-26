@@ -13,10 +13,12 @@ export function BurgerConstructor() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const user = useSelector((store) => store.auth.user);
-  const selectedBun: any = useSelector((store) => store.index.selectedBun);
-  const constructorList: any = useSelector((store) => store.index.constructorList);
-   
+  const { user, selectedBun, constructorList } = useSelector((store) => ({
+    user: store.auth.user,
+    selectedBun: store.index.selectedBun,
+    constructorList: store.index.constructorList,
+  }));
+
   React.useEffect(() => {
       const bunPrice: number = selectedBun.price ? selectedBun.price * 2 : 0;
       setTotal(constructorList.reduce((prevValue: number, item: TIngredient) => prevValue + item.price, bunPrice));

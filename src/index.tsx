@@ -9,7 +9,7 @@ import initStore from './services/store/store';
 import reportWebVitals from './reportWebVitals';
 import { App } from './app/app';
 
-const store = initStore();
+export const store = initStore();
 
 ReactDOM.render(
   <React.StrictMode>

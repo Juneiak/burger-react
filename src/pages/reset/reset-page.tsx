@@ -29,7 +29,7 @@ export function ResetPage() {
 
   return (
     <main className={ResetPageStyles.main}>
-      <form className={`${ResetPageStyles.form} mb-20`}>
+      <form onSubmit={onResetClick} className={`${ResetPageStyles.form} mb-20`}>
         <h1 className="text text_type_main-medium mb-6">
           Восстановление пароля
         </h1>
@@ -59,7 +59,7 @@ export function ResetPage() {
           />
         </div>
 
-        <Button onClick={onResetClick} type="primary" size="medium">
+        <Button type="primary" size="medium">
           Сохранить
         </Button>
       </form>

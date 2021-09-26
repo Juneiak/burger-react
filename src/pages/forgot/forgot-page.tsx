@@ -24,7 +24,7 @@ export function ForgotPage() {
 
   return (
     <main className={ForgotPageStyles.main}>
-      <form className={`${ForgotPageStyles.form} mb-20`}>
+      <form onSubmit={onRestoreClick} className={`${ForgotPageStyles.form} mb-20`}>
         <h1 className="text text_type_main-medium mb-6">
           Восстановление пароля
         </h1>
@@ -41,7 +41,7 @@ export function ForgotPage() {
           />
         </div>
 
-        <Button onClick={onRestoreClick} type="primary" size="medium">
+        <Button type="primary" size="medium">
           Восстановить
         </Button>
 

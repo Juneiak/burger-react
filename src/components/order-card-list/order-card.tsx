@@ -19,14 +19,18 @@ export const OrderCard: FC<IOrderCard> = ({ statusBar, orderData: { ingredients,
   const ingredientsList = useSelector((store) => store.index.ingredientsList);
 
   React.useEffect(() => {
-    setSelectedIngredients(ingredients.map((ingredientID: string) => ingredientsList.find((ingredient: TIngredient) => ingredient._id === ingredientID)));
+    if (ingredients && ingredientsList) {
+      setSelectedIngredients(ingredients.map((ingredientID: string) => ingredientsList.find((ingredient: TIngredient) => ingredient._id === ingredientID)));
+    };
   }, [ingredients]);
 
   React.useEffect(() => {
-    setTotalPrice(selectedIngredients.reduce((total, ingredient) => {
-      if (ingredient.type === 'bun') return total + ingredient.price * 2;
-      return total + ingredient.price;
-    }, 0));
+    if (ingredients && ingredientsList) {
+      setTotalPrice(selectedIngredients.reduce((total, ingredient) => {
+        if (ingredient.type === 'bun') return total + ingredient.price * 2;
+        return total + ingredient.price;
+      }, 0));
+    };
   }, [selectedIngredients]);
 
   React.useEffect(() => {
@@ -53,7 +57,7 @@ export const OrderCard: FC<IOrderCard> = ({ statusBar, orderData: { ingredients,
     history.push(`${url}/${_id}`, { background: location });
   };
 
-  return (
+  if (selectedIngredients) return (
     <article onClick={onCardClick} className={`${styles.card}`}>
 
       <div className={styles.header}>
@@ -97,4 +101,8 @@ export const OrderCard: FC<IOrderCard> = ({ statusBar, orderData: { ingredients,
       </div>
     </article>
   );
+return (
+  <div>error</div>
+)
+
 };

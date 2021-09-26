@@ -9,8 +9,11 @@ import { TIngredient } from '../../services/types/data';
 
 export function Burger() {
   const dispatch = useDispatch();
-  const selectedBun: any = useSelector((store) => store.index.selectedBun)
-  const constructorList: any = useSelector((store) => store.index.constructorList)
+
+  const { selectedBun, constructorList } = useSelector((store) => ({
+    selectedBun: store.index.selectedBun,
+    constructorList: store.index.constructorList,
+  }));
 
   const [{ isIngredientHover }, ingredientDropRef] = useDrop({
     accept: 'ingredient',
@@ -44,9 +47,9 @@ export function Burger() {
           <ConstructorElement
             type="top"
             isLocked
-            text={selectedBun.name}
+            text={`${selectedBun.name} (верх)`}
             price={selectedBun.price}
-            thumbnail={selectedBun.image}
+            thumbnail={`${selectedBun.image}`}
           />
         </div>
       ) : bunChoiсe}
@@ -64,9 +67,9 @@ export function Burger() {
           <ConstructorElement
             type="bottom"
             isLocked
-            text={selectedBun.name}
+            text={`${selectedBun.name} (низ)`}
             price={selectedBun.price}
-            thumbnail={selectedBun.image}
+            thumbnail={`${selectedBun.image}`}
           />
         </div>
       ) : bunChoiсe}

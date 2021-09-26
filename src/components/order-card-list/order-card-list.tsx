@@ -12,7 +12,7 @@ export const OrderCardList: FC<IOrderCardList> = ({ orders, statusBar }) => {
   return (
     <ul className={styles.list}>
       {orders.map((order, index) => (
-        <OrderCard orderData={order} key={index} statusBar={statusBar} />
+        order && order.ingredients.length ? <OrderCard orderData={order} key={index} statusBar={statusBar} /> : <div>error</div>   
       ))}
     </ul>
   );

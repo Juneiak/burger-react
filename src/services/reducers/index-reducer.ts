@@ -16,9 +16,17 @@ type TInititialIngredientsState = {
   ingredientsList: ReadonlyArray<TIngredient>,
   ingredientListIsLoaded: boolean,
   ingredientListIsError: boolean,
-  selectedIngredient: TIngredient | undefined | {},
+  selectedIngredient: TIngredient | {
+    _id?: string,
+    image?: string,
+    calories?: number,
+    name?: string,
+    proteins?: number,
+    carbohydrates?: number,
+    fat?: number,
+  },
   constructorList: Array<TIngredient> | [],
-  selectedBun: TIngredient | {},
+  selectedBun: TIngredient | { _id?: string, price?: number, name?: string, image?: string},
 };
 
 const inititialIngredientsState: TInititialIngredientsState = {
@@ -107,12 +115,10 @@ const indexReducer = (
     }
 
     case SELECT_INGREDIENT: {
-      return {
-        ...state,
-        selectedIngredient: state
-          .ingredientsList
-          .find((ingredient) => ingredient._id === action.id),
-      };
+
+      const foundIngredient = state.ingredientsList.find((ingredient) => ingredient._id === action.id)
+      if (foundIngredient) return {...state, selectedIngredient: foundIngredient};
+      return state;
     }
 
     case REMOVE_SELECTED_INGREDIENT: {
