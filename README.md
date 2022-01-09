@@ -1,4 +1,6 @@
-# учебный проект "stellar burgers"  
+# учебный проект "stellar burgers"
+site - 'https://juneiak.github.io/burger-react/'  
+
 ## Технологии:
 + Typescript
 + React
