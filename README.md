@@ -1,6 +1,6 @@
 # учебный проект "stellar burgers"
 Одностраничное приложение Stellar Burger разработано в рамках интенсива "React-разработчик"  
-site - 'https://juneiak.github.io/burger-react/'  
+[site](https://juneiak.github.io/burger-react/) 
 
 ## Технологии:
 + Typescript
