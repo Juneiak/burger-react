@@ -4,7 +4,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import initStore from './services/store/store';
 import reportWebVitals from './reportWebVitals';
 import { App } from './app/app';
@@ -16,7 +16,9 @@ ReactDOM.render(
     <DndProvider backend={HTML5Backend}>
       <Provider store={store}>
         <BrowserRouter>
+        <HashRouter basename='/'>
           <App />
+          </HashRouter>
         </BrowserRouter>
       </Provider>
     </DndProvider>
